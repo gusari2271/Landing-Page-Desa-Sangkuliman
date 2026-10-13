@@ -1,10 +1,13 @@
 import React, { useState, useEffect } from 'react';
-import { Search, Menu, X, Compass, Calendar, PhoneCall, ExternalLink, Leaf } from 'lucide-react';
-import { villageInfo } from '../data/villageData';
+import { Link, useLocation } from 'react-router-dom';
+import { Search, Menu, X, Leaf, MessageCircle } from 'lucide-react';
+import { siteConfig, getWhatsAppUrl } from '../data/villageData';
 
-export default function Navbar({ onOpenSearch, onOpenReservation }) {
+export default function Navbar({ onOpenSearch }) {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const location = useLocation();
+  const isHomePage = location.pathname === '/';
 
   useEffect(() => {
     const handleScroll = () => {
@@ -19,12 +22,13 @@ export default function Navbar({ onOpenSearch, onOpenReservation }) {
   }, []);
 
   const navLinks = [
-    { name: 'Beranda', href: '#beranda' },
-    { name: 'Jelajah', href: '#jelajah' },
-    { name: 'Pengalaman', href: '#pengalaman' },
-    { name: 'Pilihan Spot', href: '#kategori' },
-    { name: 'Mitra', href: '#mitra' },
-    { name: 'Pusat Link Hub', href: '#linkhub' },
+    { name: 'Beranda', href: isHomePage ? '#beranda' : '/' },
+    { name: 'Tentang & Sejarah', href: isHomePage ? '#tentang' : '/#tentang' },
+    { name: 'Pilihan Spot', href: isHomePage ? '#kategori' : '/#kategori' },
+    { name: 'Pengalaman', href: isHomePage ? '#pengalaman' : '/#pengalaman' },
+    { name: 'Musim', href: isHomePage ? '#musim' : '/#musim' },
+    { name: 'Kuliner', isRoute: true, href: '/kuliner' },
+    { name: 'Link Hub', href: isHomePage ? '#linkhub' : '/#linkhub' },
   ];
 
   return (
@@ -32,13 +36,14 @@ export default function Navbar({ onOpenSearch, onOpenReservation }) {
       <header
         className={`fixed top-0 left-0 right-0 z-40 transition-all duration-500 ${
           isScrolled
-            ? 'bg-white/90 backdrop-blur-md shadow-sm border-b border-stone-200/60 py-3.5'
+            ? 'bg-white/95 backdrop-blur-md shadow-sm border-b border-stone-200/60 py-3.5'
             : 'bg-gradient-to-b from-black/60 via-black/25 to-transparent text-white py-5'
         }`}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
+          
           {/* Logo Brand */}
-          <a href="#beranda" className="flex items-center gap-3 group focus:outline-none">
+          <Link to="/" className="flex items-center gap-3 group focus:outline-none">
             <div
               className={`w-10 h-10 rounded-full flex items-center justify-center transition-all duration-300 ${
                 isScrolled
@@ -51,7 +56,7 @@ export default function Navbar({ onOpenSearch, onOpenReservation }) {
             <div>
               <span
                 className={`block font-serif text-lg sm:text-xl font-bold tracking-wider uppercase transition-colors ${
-                  isScrolled ? 'text-forest-900' : 'text-white'
+                  isScrolled ? 'text-forest-950' : 'text-white'
                 }`}
               >
                 Sangkuliman
@@ -61,37 +66,47 @@ export default function Navbar({ onOpenSearch, onOpenReservation }) {
                   isScrolled ? 'text-stone-500' : 'text-stone-200'
                 }`}
               >
-                Desa Wisata • Ecotourism
+                Desa Ekowisata • Kukar
               </span>
             </div>
-          </a>
+          </Link>
 
           {/* Desktop Navigation Links */}
           <nav className="hidden lg:flex items-center space-x-7">
-            {navLinks.map((link) => (
-              <a
-                key={link.name}
-                href={link.href}
-                className={`text-sm font-medium tracking-wide transition-all relative py-1 hover:text-gold-500 ${
-                  isScrolled ? 'text-stone-700 hover:text-forest-900' : 'text-stone-100 hover:text-white'
-                }`}
-              >
-                {link.name}
-                {link.badge && (
-                  <span className="ml-1.5 px-1.5 py-0.5 text-[9px] uppercase font-bold tracking-wider bg-gold-500/20 text-gold-700 border border-gold-400/40 rounded-full">
-                    {link.badge}
-                  </span>
-                )}
-              </a>
-            ))}
+            {navLinks.map((link) => {
+              if (link.isRoute) {
+                return (
+                  <Link
+                    key={link.name}
+                    to={link.href}
+                    className={`text-sm font-medium tracking-wide transition-all relative py-1 hover:text-gold-500 ${
+                      isScrolled ? 'text-stone-700 hover:text-forest-900' : 'text-stone-100 hover:text-white'
+                    }`}
+                  >
+                    {link.name}
+                  </Link>
+                );
+              }
+              return (
+                <a
+                  key={link.name}
+                  href={link.href}
+                  className={`text-sm font-medium tracking-wide transition-all relative py-1 hover:text-gold-500 ${
+                    isScrolled ? 'text-stone-700 hover:text-forest-900' : 'text-stone-100 hover:text-white'
+                  }`}
+                >
+                  {link.name}
+                </a>
+              );
+            })}
           </nav>
 
-          {/* Right Action Icons & CTA Button */}
+          {/* Right Action Icons & WhatsApp Button */}
           <div className="hidden md:flex items-center space-x-3.5">
             {/* Search Button */}
             <button
               onClick={onOpenSearch}
-              aria-label="Pencarian Spot Wisata"
+              aria-label="Pencarian Destinasi"
               className={`p-2.5 rounded-full transition-colors ${
                 isScrolled
                   ? 'text-stone-600 hover:bg-stone-100 hover:text-forest-900'
@@ -101,20 +116,23 @@ export default function Navbar({ onOpenSearch, onOpenReservation }) {
               <Search className="w-4 h-4" />
             </button>
 
-            {/* CTA Button: Rencanakan Kunjungan */}
-            <button
-              onClick={onOpenReservation}
+            {/* CTA Button: Informasi Lebih Lanjut */}
+            <a
+              href={getWhatsAppUrl()}
+              target="_blank"
+              rel="noopener noreferrer"
               className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-xs sm:text-sm font-semibold tracking-wide bg-forest-900 text-white hover:bg-forest-800 transition-all duration-300 shadow-md hover:shadow-lg hover:-translate-y-0.5 border border-forest-700/50"
             >
-              <Calendar className="w-4 h-4 text-gold-400" />
-              <span>Rencanakan Kunjungan</span>
-            </button>
+              <MessageCircle className="w-4 h-4 text-emerald-400" />
+              <span>Informasi Lebih Lanjut</span>
+            </a>
           </div>
 
           {/* Mobile Menu Button */}
           <div className="flex items-center space-x-2 lg:hidden">
             <button
               onClick={onOpenSearch}
+              aria-label="Cari Destinasi"
               className={`p-2 rounded-full ${
                 isScrolled ? 'text-stone-700' : 'text-white'
               }`}
@@ -123,6 +141,7 @@ export default function Navbar({ onOpenSearch, onOpenReservation }) {
             </button>
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              aria-label="Menu Navigasi"
               className={`p-2 rounded-full ${
                 isScrolled ? 'text-stone-900 bg-stone-100' : 'text-white bg-white/15'
               }`}
@@ -130,6 +149,7 @@ export default function Navbar({ onOpenSearch, onOpenReservation }) {
               {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
             </button>
           </div>
+
         </div>
       </header>
 
@@ -144,7 +164,7 @@ export default function Navbar({ onOpenSearch, onOpenReservation }) {
                 </div>
                 <div>
                   <h3 className="font-serif text-lg font-bold text-white">Desa Wisata Sangkuliman</h3>
-                  <p className="text-xs text-stone-400">The Living Heritage of Nature</p>
+                  <p className="text-xs text-stone-400">The Magical of Sangkuliman</p>
                 </div>
               </div>
               <button
@@ -156,43 +176,42 @@ export default function Navbar({ onOpenSearch, onOpenReservation }) {
             </div>
 
             <nav className="mt-8 flex flex-col space-y-4">
-              {navLinks.map((link) => (
-                <a
-                  key={link.name}
-                  href={link.href}
-                  onClick={() => setMobileMenuOpen(false)}
-                  className="flex items-center justify-between text-lg font-serif tracking-wide py-2 text-stone-200 hover:text-gold-400 border-b border-forest-900/60"
-                >
-                  <span>{link.name}</span>
-                  {link.badge && (
-                    <span className="text-xs px-2 py-0.5 rounded-full bg-gold-500/20 text-gold-400">
-                      {link.badge}
-                    </span>
-                  )}
-                </a>
-              ))}
+              {navLinks.map((link) => {
+                if (link.isRoute) {
+                  return (
+                    <Link
+                      key={link.name}
+                      to={link.href}
+                      onClick={() => setMobileMenuOpen(false)}
+                      className="text-lg font-serif tracking-wide py-2 text-stone-200 hover:text-gold-400 border-b border-forest-900/60"
+                    >
+                      {link.name}
+                    </Link>
+                  );
+                }
+                return (
+                  <a
+                    key={link.name}
+                    href={link.href}
+                    onClick={() => setMobileMenuOpen(false)}
+                    className="text-lg font-serif tracking-wide py-2 text-stone-200 hover:text-gold-400 border-b border-forest-900/60"
+                  >
+                    {link.name}
+                  </a>
+                );
+              })}
             </nav>
           </div>
 
           <div className="space-y-3 pt-6 border-t border-forest-800">
-            <button
-              onClick={() => {
-                setMobileMenuOpen(false);
-                onOpenReservation();
-              }}
+            <a
+              href={getWhatsAppUrl()}
+              target="_blank"
+              rel="noopener noreferrer"
               className="w-full py-3.5 rounded-xl bg-gold-500 hover:bg-gold-600 text-forest-950 font-semibold text-center flex items-center justify-center gap-2 shadow-lg"
             >
-              <Calendar className="w-4 h-4" />
-              <span>Rencanakan Kunjungan</span>
-            </button>
-            <a
-              href={`https://wa.me/${villageInfo.contact.whatsapp}?text=Halo%20Pengelola%20Desa%20Wisata%20Sangkuliman`}
-              target="_blank"
-              rel="noreferrer"
-              className="w-full py-3 rounded-xl bg-forest-800/80 hover:bg-forest-800 text-white font-medium text-center flex items-center justify-center gap-2 border border-forest-700"
-            >
-              <PhoneCall className="w-4 h-4 text-emerald-400" />
-              <span>WhatsApp Reservasi Langsung</span>
+              <MessageCircle className="w-4 h-4 text-emerald-800" />
+              <span>Informasi Lebih Lanjut via WhatsApp</span>
             </a>
           </div>
         </div>

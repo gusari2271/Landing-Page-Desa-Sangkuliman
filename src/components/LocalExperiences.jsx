@@ -1,8 +1,10 @@
 import React from 'react';
-import { ArrowRight, Clock, Sparkles } from 'lucide-react';
-import { localExperiences } from '../data/villageData';
+import { Link } from 'react-router-dom';
+import { ArrowRight, Compass, MessageCircle } from 'lucide-react';
+import { localExperiences, getWhatsAppUrl } from '../data/villageData';
+import ImageWithFallback from './ContentBlocks/ImageWithFallback';
 
-export default function LocalExperiences({ onOpenReservation }) {
+export default function LocalExperiences() {
   return (
     <section id="pengalaman" className="py-16 sm:py-24 bg-cream-100 relative overflow-hidden">
       {/* Subtle organic background decoration */}
@@ -15,7 +17,7 @@ export default function LocalExperiences({ onOpenReservation }) {
           <div className="lg:col-span-4 space-y-6">
             <div>
               <span className="text-xs uppercase font-bold tracking-[0.25em] text-gold-600 block mb-2">
-                PENGALAMAN LOKAL
+                PENGALAMAN NYATA
               </span>
               <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-bold text-forest-950 leading-tight">
                 Experience Sangkuliman <span className="italic font-light text-forest-800">Like a Local</span>
@@ -23,52 +25,57 @@ export default function LocalExperiences({ onOpenReservation }) {
             </div>
 
             <p className="text-stone-600 text-sm sm:text-base font-light leading-relaxed">
-              Dari gemuruh riak perahu pagi hari, memetik sayuran segar di kebun organik bersama warga, hingga belajar menganyam kriya rotan. Sangkuliman menyajikan interaksi tulus yang akan selalu Anda kenang.
+              Merasakan denyut kehidupan kampung nelayan: duduk santai menanti semburan Pesut Mahakam di fajar hari, belajar memasang Rawai Pakal di tengah danau, hingga menikmati sepiring gurih Iwak Basumap hangat.
             </p>
 
-            <button
-              onClick={onOpenReservation}
-              className="inline-flex items-center gap-2.5 px-6 py-3.5 rounded-full bg-forest-900 hover:bg-forest-800 text-white text-sm font-semibold tracking-wide transition-all duration-300 shadow-md hover:shadow-lg hover:translate-x-1"
-            >
-              <span>Ikuti Pengalaman Desa</span>
-              <ArrowRight className="w-4 h-4 text-gold-400" />
-            </button>
+            <div className="pt-2">
+              <a
+                href={getWhatsAppUrl()}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2.5 px-6 py-3.5 rounded-full bg-forest-900 hover:bg-forest-800 text-white text-xs sm:text-sm font-semibold tracking-wide transition-all duration-300 shadow-md hover:shadow-lg hover:translate-x-1"
+              >
+                <MessageCircle className="w-4 h-4 text-emerald-400" />
+                <span>Konsultasi Pengalaman Desa</span>
+              </a>
+            </div>
 
-            {/* Featured Portrait Photo Card (Matching left woman photo in Intaran Sanur) */}
+            {/* Featured Portrait Photo Card */}
             <div className="relative rounded-3xl overflow-hidden shadow-card mt-6 h-80 sm:h-96 group">
-              <img
-                src="https://images.unsplash.com/photo-1544644181-1484b3fdfc62?auto=format&fit=crop&w=800&q=80"
-                alt="Warga Lokal Desa Sangkuliman"
+              <ImageWithFallback
+                src="/images/tanjung-hallat/cover.jpg"
+                alt="Kehangatan Masyarakat dan Nelayan Sangkuliman"
                 className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-forest-950/90 via-transparent to-transparent"></div>
-              <div className="absolute bottom-5 left-5 right-5 text-white">
+              <div className="absolute inset-0 bg-gradient-to-t from-forest-950/95 via-forest-900/30 to-transparent"></div>
+              <div className="absolute bottom-5 left-5 right-5 text-white z-10">
                 <span className="text-[10px] uppercase font-bold tracking-widest text-gold-300 block mb-1">
-                  KEARIFAN LOKAL
+                  KEARIFAN KAMPUNG NELAYAN
                 </span>
                 <p className="font-serif text-lg font-bold">Kehangatan Warga Yang Siap Menyambut Anda</p>
-                <p className="text-xs text-stone-300 font-light mt-0.5">Senyum ramah, cerita tulus, dan kekeluargaan</p>
+                <p className="text-xs text-stone-300 font-light mt-0.5">Senyum ramah, kearifan lestari, dan ketulusan hati</p>
               </div>
             </div>
           </div>
 
-          {/* Right Column: 6 Grid Collage Experiences */}
+          {/* Right Column: 6 Grid Collage Experiences (Links to /destinasi/:slug) */}
           <div className="lg:col-span-8">
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
               {localExperiences.map((exp) => (
-                <div
+                <Link
                   key={exp.id}
+                  to={`/destinasi/${exp.slug}`}
                   className="group bg-white rounded-2xl sm:rounded-3xl overflow-hidden border border-stone-200/80 shadow-soft hover:shadow-card-hover transition-all duration-500 flex flex-col justify-between hover:-translate-y-1.5"
                 >
                   <div>
                     {/* Thumbnail Image */}
                     <div className="relative h-44 overflow-hidden">
-                      <img
+                      <ImageWithFallback
                         src={exp.image}
                         alt={exp.title}
                         className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                       />
-                      <div className="absolute top-3 left-3">
+                      <div className="absolute top-3 left-3 z-10">
                         <span className="px-2.5 py-1 rounded-full bg-forest-900/85 backdrop-blur-md text-white text-[10px] font-semibold tracking-wider">
                           {exp.category}
                         </span>
@@ -86,17 +93,17 @@ export default function LocalExperiences({ onOpenReservation }) {
                     </div>
                   </div>
 
-                  {/* Time badge */}
+                  {/* Bottom link */}
                   <div className="px-4 sm:px-5 pb-4 pt-1 flex items-center justify-between border-t border-stone-100 text-xs text-stone-500">
                     <span className="inline-flex items-center gap-1.5 text-[11px] font-medium text-forest-800">
-                      <Clock className="w-3.5 h-3.5 text-gold-600" />
-                      {exp.time}
+                      <Compass className="w-3.5 h-3.5 text-gold-600" />
+                      Ekowisata
                     </span>
                     <span className="text-[11px] font-semibold text-gold-600 group-hover:text-forest-900 transition-colors">
-                      Eksplor →
+                      Pelajari →
                     </span>
                   </div>
-                </div>
+                </Link>
               ))}
             </div>
           </div>

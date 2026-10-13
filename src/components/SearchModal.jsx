@@ -1,27 +1,66 @@
 import React, { useState } from 'react';
-import { Search, X, ArrowUpRight, MapPin, Tag } from 'lucide-react';
-import { curatedCategories, localExperiences, discoverPills } from '../data/villageData';
+import { useNavigate } from 'react-router-dom';
+import { Search, X, ArrowUpRight, Compass, Utensils } from 'lucide-react';
+import { destinations, culinaryData } from '../data/villageData';
+import ImageWithFallback from './ContentBlocks/ImageWithFallback';
 
-export default function SearchModal({ isOpen, onClose, onSelectSpot }) {
+export default function SearchModal({ isOpen, onClose }) {
   const [searchQuery, setSearchQuery] = useState('');
+  const navigate = useNavigate();
 
   if (!isOpen) return null;
 
-  // Aggregate searchable items
-  const allItems = [
-    ...curatedCategories.map(item => ({ ...item, type: 'Spot / Layanan' })),
-    ...localExperiences.map(item => ({ ...item, type: 'Pengalaman Lokal', price: item.time })),
-    ...discoverPills.map(item => ({ ...item, type: 'Kategori', price: 'Eksplor' })),
+  // Indeks pencarian gabungan dari destinasi dan kuliner
+  const searchableDestinations = destinations.map((d) => ({
+    title: d.name,
+    category: d.category,
+    description: d.summary || d.tagline,
+    image: d.cover,
+    link: `/destinasi/${d.slug}`,
+    type: 'Destinasi Wisata',
+  }));
+
+  const searchableCulinary = [
+    {
+      title: culinaryData.iconic.name,
+      category: culinaryData.iconic.category,
+      description: culinaryData.iconic.description,
+      image: culinaryData.iconic.photo,
+      link: '/kuliner',
+      type: 'Kuliner Khas',
+    },
+    ...culinaryData.kueBasah.map((k) => ({
+      title: k.name,
+      category: k.category,
+      description: k.description,
+      image: k.photo,
+      link: '/kuliner',
+      type: 'Kue Basah',
+    })),
+    ...culinaryData.kueKering.map((k) => ({
+      title: k.name,
+      category: k.category,
+      description: k.description,
+      image: k.photo,
+      link: '/kuliner',
+      type: 'Kue Kering',
+    })),
   ];
 
+  const allSearchable = [...searchableDestinations, ...searchableCulinary];
+
   const filtered = searchQuery.trim() === ''
-    ? allItems.slice(0, 6)
-    : allItems.filter(item => 
+    ? allSearchable.slice(0, 6)
+    : allSearchable.filter((item) =>
         item.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
         (item.description && item.description.toLowerCase().includes(searchQuery.toLowerCase())) ||
-        (item.category && item.category.toLowerCase().includes(searchQuery.toLowerCase())) ||
-        (item.subCategory && item.subCategory.toLowerCase().includes(searchQuery.toLowerCase()))
+        (item.category && item.category.toLowerCase().includes(searchQuery.toLowerCase()))
       );
+
+  const handleSelectItem = (item) => {
+    navigate(item.link);
+    onClose();
+  };
 
   return (
     <div className="fixed inset-0 z-50 flex items-start justify-center pt-16 sm:pt-24 p-4 bg-black/70 backdrop-blur-sm animate-fadeIn">
@@ -35,7 +74,7 @@ export default function SearchModal({ isOpen, onClose, onSelectSpot }) {
             autoFocus
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            placeholder="Ketik nama spot, sungai, homestay, atau kuliner..."
+            placeholder="Cari Pesut Mahakam, Tari Jepen, Tanjung Hallat, Iwak Basumap..."
             className="flex-1 text-sm sm:text-base bg-transparent border-0 focus:outline-none text-forest-950 placeholder:text-stone-400"
           />
           {searchQuery && (
@@ -50,37 +89,36 @@ export default function SearchModal({ isOpen, onClose, onSelectSpot }) {
             onClick={onClose}
             className="px-3 py-1.5 rounded-full bg-cream-100 hover:bg-stone-200 text-xs font-semibold text-stone-600"
           >
-            ESC / Tutup
+            Tutup
           </button>
         </div>
 
         {/* Results Body */}
         <div className="p-4 sm:p-6 overflow-y-auto space-y-3">
           <span className="text-[11px] font-bold uppercase tracking-wider text-stone-400 block mb-2">
-            {searchQuery ? `Hasil Pencarian (${filtered.length})` : 'Rekomendasi Terpopuler'}
+            {searchQuery ? `Hasil Pencarian (${filtered.length})` : 'Pilihan Destinasi & Kuliner'}
           </span>
 
           {filtered.length === 0 ? (
             <div className="py-12 text-center text-stone-500">
               <p className="text-sm">Tidak ditemukan hasil untuk "{searchQuery}"</p>
-              <p className="text-xs text-stone-400 mt-1">Coba kata kunci lain seperti "sungai", "homestay", "ikan", atau "anyaman".</p>
+              <p className="text-xs text-stone-400 mt-1">Coba kata kunci seperti "pesut", "tanjung", "hallat", "luah", "bekantan", atau "kue".</p>
             </div>
           ) : (
             filtered.map((item, index) => (
               <div
                 key={index}
-                onClick={() => {
-                  onSelectSpot && onSelectSpot(item);
-                  onClose();
-                }}
+                onClick={() => handleSelectItem(item)}
                 className="p-3 sm:p-4 rounded-2xl bg-cream-100 hover:bg-forest-900 hover:text-white transition-all duration-200 cursor-pointer flex items-center justify-between group"
               >
                 <div className="flex items-center gap-3.5">
-                  <img
-                    src={item.image}
-                    alt={item.title}
-                    className="w-12 h-12 rounded-xl object-cover shrink-0"
-                  />
+                  <div className="w-12 h-12 rounded-xl overflow-hidden shrink-0">
+                    <ImageWithFallback
+                      src={item.image}
+                      alt={item.title}
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
                   <div>
                     <div className="flex items-center gap-2">
                       <span className="text-[10px] uppercase font-bold tracking-wider px-2 py-0.5 rounded bg-white text-forest-900 group-hover:bg-gold-500 group-hover:text-forest-950">
@@ -98,14 +136,9 @@ export default function SearchModal({ isOpen, onClose, onSelectSpot }) {
                   </div>
                 </div>
 
-                <div className="text-right shrink-0 ml-3">
-                  <span className="text-xs font-semibold text-forest-800 group-hover:text-gold-300 block">
-                    {item.price}
-                  </span>
-                  <div className="inline-flex items-center text-[10px] text-stone-400 group-hover:text-stone-200 gap-0.5 mt-0.5">
-                    <span>Lihat</span>
-                    <ArrowUpRight className="w-3 h-3" />
-                  </div>
+                <div className="text-right shrink-0 ml-3 flex items-center text-xs text-forest-900 group-hover:text-gold-300 gap-1">
+                  <span>Lihat</span>
+                  <ArrowUpRight className="w-4 h-4" />
                 </div>
               </div>
             ))

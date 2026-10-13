@@ -1,13 +1,13 @@
 import React from 'react';
-import { X, Play } from 'lucide-react';
-import { villageInfo } from '../data/villageData';
+import { X } from 'lucide-react';
+import { siteConfig } from '../data/villageData';
 
 export default function VideoModal({ isOpen, onClose }) {
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/85 backdrop-blur-md animate-fadeIn">
-      <div className="relative w-full max-w-4xl bg-black rounded-3xl overflow-hidden shadow-2xl border border-stone-800">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-md animate-fadeIn">
+      <div className="relative w-full max-w-7xl bg-black rounded-3xl overflow-hidden shadow-2xl border border-stone-800">
         
         {/* Close Button */}
         <button
@@ -21,7 +21,7 @@ export default function VideoModal({ isOpen, onClose }) {
         {/* Video Player Container */}
         <div className="aspect-video w-full">
           <iframe
-            src="https://www.youtube.com/embed/ScMzIvxBSi4?autoplay=1"
+            src="https://www.youtube.com/embed/LeyZZOXV2cs?si=Sw7uw3vNpE273VCx?autoplay=1"
             title="Video Profil Desa Wisata Sangkuliman"
             className="w-full h-full border-0"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
@@ -36,7 +36,7 @@ export default function VideoModal({ isOpen, onClose }) {
             <p className="text-xs text-stone-300 font-light">Dokumenter pesona alam pedesaan, kearifan lokal, dan susur sungai asri</p>
           </div>
           <a
-            href={villageInfo.socials.youtube}
+            href={siteConfig.socials.youtube}
             target="_blank"
             rel="noreferrer"
             className="text-xs font-semibold text-gold-400 hover:text-white underline self-start sm:self-auto"

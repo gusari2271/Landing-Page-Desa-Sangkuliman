@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
-import { X, FileText, Download, CheckCircle2, Map, ShieldCheck, Sparkles } from 'lucide-react';
-import { villageInfo } from '../data/villageData';
+import { X, FileText, Download, CheckCircle2 } from 'lucide-react';
 
 export default function BrochureModal({ isOpen, onClose }) {
   const [downloading, setDownloading] = useState(false);
@@ -24,6 +23,7 @@ export default function BrochureModal({ isOpen, onClose }) {
         <div className="bg-forest-950 text-white p-6 relative border-b border-forest-800 text-center">
           <button
             onClick={onClose}
+            aria-label="Tutup"
             className="absolute top-5 right-5 p-1.5 rounded-full hover:bg-forest-900 text-stone-300 hover:text-white transition-colors"
           >
             <X className="w-5 h-5" />
@@ -38,7 +38,7 @@ export default function BrochureModal({ isOpen, onClose }) {
           </span>
           <h3 className="font-serif text-2xl font-bold text-white mt-2">Buku Panduan Wisata Sangkuliman</h3>
           <p className="text-xs text-stone-300 font-light mt-1">
-            Format Digital PDF (Resolusi Tinggi • Edisi Terbaru)
+            Format Digital PDF • Desa Ekowisata Sangkuliman
           </p>
         </div>
 
@@ -49,19 +49,19 @@ export default function BrochureModal({ isOpen, onClose }) {
             <ul className="space-y-2 text-xs text-stone-600">
               <li className="flex items-center gap-2">
                 <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
-                <span>Peta Rute & Titik Spot Wisata Susur Sungai</span>
+                <span>Peta Rute Susur Sungai, 4 Luah, dan Danau Semayang</span>
               </li>
               <li className="flex items-center gap-2">
                 <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
-                <span>Daftar Lengkap Homestay Warga & Kontak Pemilik</span>
+                <span>Panduan Melihat Satwa Langka Pesut Mahakam & Bekantan</span>
               </li>
               <li className="flex items-center gap-2">
                 <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
-                <span>Daftar Menu Kuliner Tradisional & Warung Desa</span>
+                <span>Daftar Kuliner Khas Iwak Basumap & Kue Tradisional</span>
               </li>
               <li className="flex items-center gap-2">
                 <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
-                <span>Tata Tertib Kearifan Lokal & Tips Berkeliling</span>
+                <span>Tata Tertib Wisata Bertanggung Jawab & Kontak Pokdarwis BMT</span>
               </li>
             </ul>
           </div>
@@ -92,7 +92,7 @@ export default function BrochureModal({ isOpen, onClose }) {
             )}
 
             <p className="text-center text-[10px] text-stone-400 mt-3">
-              Diterbitkan oleh Pokdarwis & Lembaga Pengelola Desa Wisata Sangkuliman
+              Diterbitkan resmi oleh Pokdarwis Bertata Menata Tertata (BMT)
             </p>
           </div>
         </div>

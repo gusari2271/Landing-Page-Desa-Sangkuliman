@@ -1,5 +1,5 @@
 import React from 'react';
-import { ArrowRight, Shield, Award, Building2, Trees, Sparkles } from 'lucide-react';
+import { Trees, ShieldCheck, Heart, Sparkles, Building2 } from 'lucide-react';
 import { partnersList } from '../data/villageData';
 
 export default function PartnersSection() {
@@ -11,32 +11,32 @@ export default function PartnersSection() {
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-4">
           <div>
             <span className="text-xs uppercase font-bold tracking-[0.25em] text-gold-600 block mb-1.5">
-              KOLABORASI & DUKUNGAN
+              KOLABORASI & PELESTARIAN
             </span>
             <h2 className="font-serif text-2xl sm:text-3xl lg:text-4xl font-bold text-forest-950">
-              Mitra Resmi <span className="italic font-light text-forest-800">& Komunitas Desa</span>
+              Mitra Kerja Sama <span className="italic font-light text-forest-800">& Kelembagaan Desa</span>
             </h2>
           </div>
 
           <p className="text-stone-500 text-xs sm:text-sm max-w-md font-light">
-            Bersama mewujudkan ekowisata berkelanjutan, memberdayakan ekonomi warga, dan menjaga kelestarian alam Sangkuliman.
+            Bersama mewujudkan ekowisata berkelanjutan, menjaga konservasi satwa langka, dan merawat alam Sangkuliman.
           </p>
         </div>
 
-        {/* Partners Grid Logo Badges */}
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4 sm:gap-6">
+        {/* Partners Grid */}
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-7 gap-4 sm:gap-5">
           {partnersList.map((partner, index) => (
             <div
               key={index}
-              className="bg-white/80 backdrop-blur-sm p-5 rounded-2xl border border-stone-200/70 shadow-sm hover:shadow-md transition-all duration-300 flex flex-col items-center justify-center text-center group hover:-translate-y-1"
+              className="bg-white/90 backdrop-blur-sm p-4 sm:p-5 rounded-2xl border border-stone-200/80 shadow-soft hover:shadow-md transition-all duration-300 flex flex-col items-center justify-center text-center group hover:-translate-y-1"
             >
-              <div className="w-12 h-12 rounded-full bg-forest-50 text-forest-800 flex items-center justify-center mb-3 group-hover:bg-forest-900 group-hover:text-gold-400 transition-colors">
-                <Trees className="w-6 h-6" />
+              <div className="w-11 h-11 rounded-full bg-forest-50 text-forest-800 flex items-center justify-center mb-3 group-hover:bg-forest-900 group-hover:text-gold-400 transition-colors">
+                <ShieldCheck className="w-5 h-5" />
               </div>
-              <h3 className="font-serif text-sm font-bold text-forest-950 group-hover:text-forest-800 transition-colors line-clamp-1">
+              <h3 className="font-serif text-xs sm:text-sm font-bold text-forest-950 group-hover:text-forest-800 transition-colors line-clamp-2">
                 {partner.name}
               </h3>
-              <p className="text-[11px] text-stone-500 font-light mt-0.5 line-clamp-1">
+              <p className="text-[10px] sm:text-[11px] text-stone-500 font-light mt-1 line-clamp-2">
                 {partner.role}
               </p>
             </div>

@@ -1,21 +1,21 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Bot, X, Send, Sparkles, User, MessageSquare, ArrowRight, CornerDownLeft, ExternalLink } from 'lucide-react';
-import { chatbotKnowledge, villageInfo } from '../data/villageData';
+import { Bot, X, Send, Sparkles, MessageCircle, ExternalLink } from 'lucide-react';
+import { chatbotKnowledge, siteConfig, getWhatsAppUrl } from '../data/villageData';
 
 /**
  * PANDUAN INTEGRASI CHATBOT PIHAK KETIGA (Chatbase / Chatling / Tidio / Dify):
  * 1. Jika ingin menggunakan skrip eksternal (misal Chatbase / Chatling), ubah USE_EXTERNAL_SCRIPT ke `true`
  * 2. Masukkan URL skrip atau embed iframe pada variabel EXTERNAL_SCRIPT_URL di bawah.
  */
-const USE_EXTERNAL_SCRIPT = false; // Ubah ke true jika ingin memakai Chatbase/Tidio asli
-const EXTERNAL_SCRIPT_URL = ""; // Contoh: "https://www.chatbase.co/embed.min.js"
+const USE_EXTERNAL_SCRIPT = false;
+const EXTERNAL_SCRIPT_URL = "";
 
 export default function ChatbotWidget() {
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState([
     {
       sender: 'bot',
-      text: 'Halo! Selamat datang di Desa Wisata Sangkuliman. Saya asisten cerdas desa yang siap menjawab pertanyaan seputar paket wisata, susur sungai, homestay, atau rute perjalanan. Ada yang bisa saya bantu?',
+      text: 'Halo! Selamat datang di Desa Wisata Sangkuliman. Saya asisten cerdas desa yang siap menjawab seputar Pesut Mahakam, rute kapal feri Liang Ulu, waktu terbaik berkunjung, dan kuliner khas desa. Ada yang ingin Anda tanyakan?',
       time: 'Baru saja'
     }
   ]);
@@ -46,34 +46,40 @@ export default function ChatbotWidget() {
     setInputValue('');
     setIsTyping(true);
 
-    // Simulate AI response logic based on keywords
+    // Simulate AI response logic based on authentic keywords
     setTimeout(() => {
       const lowerQuery = query.toLowerCase();
+
+      // Cek apakah pertanyaan tentang harga, biaya, homestay, atau paket booking
+      const isPriceOrBooking = ["harga", "biaya", "tarif", "paket", "tiket", "bayar", "homestay", "kamar", "menginap", "booking", "reservasi"].some(kw => lowerQuery.includes(kw));
+
       let matchedAnswer = chatbotKnowledge.find(item => 
         item.keywords.some(kw => lowerQuery.includes(kw))
       );
 
       let reply = matchedAnswer 
         ? matchedAnswer.answer 
-        : `Terima kasih atas pertanyaannya! Untuk informasi lebih detail mengenai "${query}", Anda dapat menghubungi langsung pengelola Pokdarwis kami via WhatsApp di nomor ${villageInfo.contact.whatsappDisplay} atau mengakses Pusat Link Hub di website ini.`;
+        : `Terima kasih atas pertanyaannya! Untuk informasi lebih lengkap mengenai "${query}", Anda dapat menghubungi langsung pengurus Pokdarwis BMT via WhatsApp resmi kami di nomor ${siteConfig.whatsappDisplay}.`;
 
       setMessages((prev) => [
         ...prev,
         {
           sender: 'bot',
           text: reply,
-          time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
+          time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
+          showWaButton: isPriceOrBooking
         }
       ]);
       setIsTyping(false);
-    }, 900);
+    }, 800);
   };
 
   const quickQuestions = [
-    'Berapa harga paket wisata?',
-    'Bagaimana rute ke desa?',
-    'Fasilitas homestay apa saja?',
-    'Aktivitas susur sungai',
+    'Bagaimana cara melihat Pesut Mahakam?',
+    'Cara akses ke desa lewat Liang Ulu?',
+    'Kapan waktu terbaik berkunjung?',
+    'Apa saja kuliner khas desa?',
+    'Bagaimana sejarah pemukiman 1990?',
   ];
 
   return (
@@ -81,7 +87,7 @@ export default function ChatbotWidget() {
       
       {/* Chatbot Window Popup */}
       {isOpen && (
-        <div className="mb-4 w-[90vw] sm:w-[380px] h-[520px] bg-white rounded-3xl shadow-2xl border border-stone-200 flex flex-col overflow-hidden animate-fadeIn">
+        <div className="mb-4 w-[90vw] sm:w-[390px] h-[530px] bg-white rounded-3xl shadow-2xl border border-stone-200 flex flex-col overflow-hidden animate-fadeIn">
           
           {/* Chatbot Header */}
           <div className="bg-forest-950 text-white p-4.5 flex items-center justify-between border-b border-forest-800">
@@ -95,14 +101,15 @@ export default function ChatbotWidget() {
               <div>
                 <h4 className="font-serif text-sm font-bold text-white flex items-center gap-1.5">
                   <span>Asisten AI Sangkuliman</span>
-                  <span className="px-1.5 py-0.2 text-[9px] bg-gold-500/20 text-gold-300 rounded-full">AI Bot</span>
+                  <span className="px-1.5 py-0.2 text-[9px] bg-gold-500/20 text-gold-300 rounded-full">Pokdarwis BMT</span>
                 </h4>
-                <p className="text-[11px] text-stone-300 font-light">Siap membantu 24/7 seputar wisata desa</p>
+                <p className="text-[11px] text-stone-300 font-light">Informasi resmi Desa Wisata Sangkuliman</p>
               </div>
             </div>
 
             <button
               onClick={() => setIsOpen(false)}
+              aria-label="Tutup Chat"
               className="p-1.5 rounded-full hover:bg-forest-900 text-stone-300 hover:text-white transition-colors"
             >
               <X className="w-5 h-5" />
@@ -123,13 +130,28 @@ export default function ChatbotWidget() {
                 )}
                 
                 <div
-                  className={`max-w-[82%] p-3.5 rounded-2xl ${
+                  className={`max-w-[84%] p-3.5 rounded-2xl ${
                     msg.sender === 'user'
                       ? 'bg-forest-900 text-white rounded-br-none shadow-sm'
                       : 'bg-white text-stone-800 rounded-bl-none border border-stone-200/80 shadow-soft'
                   }`}
                 >
                   <p className="leading-relaxed whitespace-pre-wrap">{msg.text}</p>
+                  
+                  {msg.showWaButton && (
+                    <div className="mt-3 pt-2.5 border-t border-stone-100">
+                      <a
+                        href={getWhatsAppUrl()}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-emerald-600 hover:bg-emerald-700 text-white font-semibold text-xs transition-colors"
+                      >
+                        <MessageCircle className="w-3.5 h-3.5" />
+                        <span>Hubungi via WhatsApp</span>
+                      </a>
+                    </div>
+                  )}
+
                   <span
                     className={`block text-[9px] mt-1 text-right ${
                       msg.sender === 'user' ? 'text-stone-300' : 'text-stone-400'
@@ -177,7 +199,7 @@ export default function ChatbotWidget() {
               type="text"
               value={inputValue}
               onChange={(e) => setInputValue(e.target.value)}
-              placeholder="Tanya paket wisata, homestay, rute..."
+              placeholder="Tanya pesut, akses Liang Ulu, kuliner..."
               className="flex-1 px-3.5 py-2 rounded-full bg-cream-100 border border-stone-300 text-xs sm:text-sm focus:outline-none focus:border-forest-800 text-stone-800"
             />
             <button
@@ -208,8 +230,8 @@ export default function ChatbotWidget() {
           )}
         </div>
         <div className="text-left hidden sm:block">
-          <span className="block text-xs font-bold leading-none text-gold-300">Tanya AI Desa</span>
-          <span className="block text-[10px] text-stone-300 font-light mt-0.5">Asisten 24/7</span>
+          <span className="block text-xs font-bold leading-none text-gold-300">Tanya Asisten Desa</span>
+          <span className="block text-[10px] text-stone-300 font-light mt-0.5">Pokdarwis BMT</span>
         </div>
       </button>
 

@@ -1,18 +1,19 @@
 import React from 'react';
-import { ArrowRight, PhoneCall, Calendar } from 'lucide-react';
-import { villageInfo } from '../data/villageData';
+import { MessageCircle, Compass } from 'lucide-react';
+import { getWhatsAppUrl } from '../data/villageData';
+import ImageWithFallback from './ContentBlocks/ImageWithFallback';
 
-export default function CtaBanner({ onOpenReservation }) {
+export default function CtaBanner() {
   return (
     <section className="relative py-20 sm:py-28 overflow-hidden">
-      {/* Landscape Sunset / River Background with moody overlay */}
+      {/* Sunset Background at Tanjung Rappeh with moody overlay */}
       <div className="absolute inset-0 z-0">
-        <img
-          src="https://images.unsplash.com/photo-1518241353330-0f7941c2d9b5?auto=format&fit=crop&w=2000&q=80"
-          alt="Sunset di Desa Wisata Sangkuliman"
+        <ImageWithFallback
+          src="/images/tanjung-rappeh/cover.jpg"
+          alt="Sunset di Tanjung Rappeh Desa Wisata Sangkuliman"
           className="w-full h-full object-cover object-center filter brightness-75"
         />
-        <div className="absolute inset-0 bg-gradient-to-r from-forest-950/90 via-forest-900/70 to-black/60"></div>
+        <div className="absolute inset-0 bg-gradient-to-r from-forest-950/95 via-forest-900/80 to-black/70"></div>
       </div>
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -21,39 +22,38 @@ export default function CtaBanner({ onOpenReservation }) {
           {/* Main Title & Action */}
           <div className="lg:col-span-8 text-white space-y-4">
             <span className="text-xs uppercase font-bold tracking-[0.25em] text-gold-300 block">
-              MULAI PETUALANGAN ANDA
+              RENCANAKAN KUNJUNGAN ANDA
             </span>
             <h2 className="font-serif text-3xl sm:text-5xl lg:text-6xl font-bold leading-tight">
-              Your Sangkuliman Story <br className="hidden sm:block" />
-              <span className="italic font-light text-gold-200">Starts Here</span>
+              Kunjungi Pusaka Alam <br className="hidden sm:block" />
+              <span className="italic font-light text-gold-200">Desa Wisata Sangkuliman</span>
             </h2>
-            <p className="text-stone-200 text-sm sm:text-base font-light max-w-xl">
-              Jadikan liburan Anda bermakna dengan menjelajahi keindahan sungai alami, tinggal di homestay ramah warga, dan mendukung ekonomi lokal desa.
+            <p className="text-stone-200 text-sm sm:text-base font-light max-w-xl leading-relaxed">
+              Jelajahi perairan tenang Sungai Mahakam, saksikan semburan Pesut Mahakam, dan nikmati keramahan kampung nelayan yang asri dan bersahaja.
             </p>
 
             <div className="pt-3 flex flex-wrap items-center gap-4">
-              <button
-                onClick={onOpenReservation}
+              <a
+                href={getWhatsAppUrl()}
+                target="_blank"
+                rel="noopener noreferrer"
                 className="inline-flex items-center gap-2.5 px-8 py-4 rounded-full bg-gold-500 hover:bg-gold-600 text-forest-950 font-bold text-sm sm:text-base transition-all duration-300 shadow-xl hover:shadow-2xl hover:scale-105"
               >
-                <Calendar className="w-4 h-4" />
-                <span>Reservasi Kunjungan Sekarang</span>
-                <ArrowRight className="w-4 h-4" />
-              </button>
+                <MessageCircle className="w-5 h-5 text-emerald-800" />
+                <span>Informasi Lebih Lanjut</span>
+              </a>
 
               <a
-                href={`https://wa.me/${villageInfo.contact.whatsapp}?text=Halo%20Pengelola%20Desa%20Wisata%20Sangkuliman,%20saya%20ingin%20konsultasi%20jadwal%20kunjungan.`}
-                target="_blank"
-                rel="noreferrer"
+                href="#linkhub"
                 className="inline-flex items-center gap-2 px-6 py-4 rounded-full bg-white/15 hover:bg-white/25 backdrop-blur-md text-white font-medium text-sm sm:text-base border border-white/30 transition-all duration-300"
               >
-                <PhoneCall className="w-4 h-4 text-emerald-400" />
-                <span>Konsultasi WhatsApp</span>
+                <Compass className="w-4 h-4 text-gold-400" />
+                <span>Pusat Link Terpadu</span>
               </a>
             </div>
           </div>
 
-          {/* Right Script Quote (Matching Intaran Sanur) */}
+          {/* Right Script Quote */}
           <div className="lg:col-span-4 flex justify-start lg:justify-end">
             <div className="bg-white/10 backdrop-blur-md p-6 sm:p-8 rounded-3xl border border-white/15 text-left lg:text-right max-w-sm">
               <p className="font-script text-3xl sm:text-4xl text-gold-300 font-bold leading-snug">

@@ -1,23 +1,40 @@
 import React, { useState } from 'react';
-import { ArrowUpRight, Star, BedDouble, UtensilsCrossed, Compass, Sparkles, ShoppingBag, Calendar, CheckCircle2 } from 'lucide-react';
-import { curatedCategories } from '../data/villageData';
+import { Link } from 'react-router-dom';
+import { ArrowUpRight, Compass, Sparkles, Waves, Trees, BookOpen, Clock, Heart } from 'lucide-react';
+import { destinations } from '../data/villageData';
+import ImageWithFallback from './ContentBlocks/ImageWithFallback';
 
 const filterTabs = [
-  { id: 'all', name: 'Semua Kategori', icon: Sparkles },
-  { id: 'Tempat Menginap', name: 'Homestay Desa', icon: BedDouble },
-  { id: 'Warung & Kuliner', name: 'Kuliner Tradisional', icon: UtensilsCrossed },
-  { id: 'Aktivitas & Petualangan', name: 'Susur Sungai & Petualangan', icon: Compass },
-  { id: 'Spot Relaksasi', name: 'Spot Alam & Relaksasi', icon: Sparkles },
-  { id: 'Oleh-oleh & Kriya', name: 'Kerajinan & Madu', icon: ShoppingBag },
-  { id: 'Agenda Budaya', name: 'Event & Budaya', icon: Calendar },
+  { id: 'all', name: 'Semua Destinasi', icon: Sparkles },
+  { id: 'satwa', name: 'Satwa Langka', icon: Trees },
+  { id: 'spot-alam', name: 'Spot Alam & Sunset', icon: Waves },
+  { id: 'nelayan', name: 'Edukasi Nelayan', icon: Compass },
+  { id: 'susur-sungai', name: 'Susur Sungai & Luah', icon: Waves },
+  { id: 'budaya-sejarah', name: 'Budaya & Sejarah', icon: BookOpen },
 ];
 
-export default function CuratedCategories({ onSelectSpot }) {
+export default function CuratedCategories() {
   const [activeTab, setActiveTab] = useState('all');
 
-  const filteredItems = activeTab === 'all'
-    ? curatedCategories
-    : curatedCategories.filter(item => item.category === activeTab);
+  const filteredItems = destinations.filter((dest) => {
+    if (activeTab === 'all') return true;
+    if (activeTab === 'satwa') {
+      return dest.category.toLowerCase().includes('satwa');
+    }
+    if (activeTab === 'spot-alam') {
+      return dest.category.toLowerCase().includes('spot alam') || dest.category.toLowerCase().includes('sunset') || dest.category.toLowerCase().includes('danau');
+    }
+    if (activeTab === 'nelayan') {
+      return dest.category.toLowerCase().includes('nelayan') || dest.slug === 'tanjung-hallat';
+    }
+    if (activeTab === 'susur-sungai') {
+      return dest.category.toLowerCase().includes('susur sungai') || dest.slug.startsWith('luah');
+    }
+    if (activeTab === 'budaya-sejarah') {
+      return dest.category.toLowerCase().includes('budaya') || dest.category.toLowerCase().includes('sejarah');
+    }
+    return true;
+  });
 
   return (
     <section id="kategori" className="py-16 sm:py-24 bg-white relative">
@@ -27,23 +44,23 @@ export default function CuratedCategories({ onSelectSpot }) {
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-6">
           <div>
             <span className="text-xs uppercase font-bold tracking-[0.25em] text-gold-600 block mb-2">
-              JELAJAH SANGKULIMAN
+              DIREKTORI RESMI DESA
             </span>
             <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-bold text-forest-950">
-              Find What You Love <span className="italic font-light text-forest-800">in Sangkuliman</span>
+              Pilihan Destinasi <span className="italic font-light text-forest-800">Sangkuliman</span>
             </h2>
-            <p className="text-stone-600 text-sm sm:text-base font-light mt-2 max-w-2xl">
-              Dari gemericik aliran sungai nan sejuk, kehangatan warga di homestay tradisional, hingga kelezatan kuliner lokal.
+            <p className="text-stone-600 text-sm sm:text-base font-light mt-2 max-w-2xl leading-relaxed">
+              Dari keajaiban lumba-lumba air tawar Pesut Mahakam, keheningan 4 luah alami, hingga pesona matahari terbenam Danau Semayang.
             </p>
           </div>
 
-          <a
-            href="#linkhub"
+          <Link
+            to="/kuliner"
             className="inline-flex items-center gap-1.5 text-sm font-semibold text-forest-900 hover:text-gold-600 transition-colors shrink-0 group self-start md:self-end"
           >
-            <span>Lihat Semua Direktori</span>
+            <span>Jelajahi Kuliner Khas</span>
             <ArrowUpRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-          </a>
+          </Link>
         </div>
 
         {/* Filter Pills with Horizontal Scroll on Mobile */}
@@ -67,65 +84,62 @@ export default function CuratedCategories({ onSelectSpot }) {
             );
           })}
         </div>
-
-        {/* 6 Grid Cards matching Intaran Sanur Style */}
+        {/* Destination Cards Grid (Link to /destinasi/:slug) - NO PRICES */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
           {filteredItems.map((item) => (
-            <div
-              key={item.id}
-              onClick={() => onSelectSpot && onSelectSpot(item)}
-              className="group bg-cream-100 rounded-3xl overflow-hidden border border-stone-200/70 shadow-sm hover:shadow-card-hover transition-all duration-500 flex flex-col justify-between cursor-pointer hover:-translate-y-1.5"
+            <Link
+              key={item.slug}
+              to={`/destinasi/${item.slug}`}
+              className="group bg-cream-100 rounded-3xl overflow-hidden border border-stone-200/70 shadow-sm hover:shadow-card-hover transition-all duration-500 flex flex-col justify-between hover:-translate-y-1.5"
             >
               <div>
                 {/* Photo with Overlay and Badges */}
                 <div className="relative h-60 w-full overflow-hidden">
-                  <img
-                    src={item.image}
-                    alt={item.title}
+                  <ImageWithFallback
+                    src={item.cover}
+                    alt={item.name}
                     className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                    containerClassName="w-full h-full"
+                    objectPosition={item.coverPosition}
+                    scale={item.coverZoom}
                   />
                   <div className="absolute top-4 left-4 flex gap-2">
-                    <span className="px-3 py-1 rounded-full bg-forest-900/80 backdrop-blur-md text-white text-[11px] font-semibold tracking-wide">
-                      {item.subCategory}
+                    <span className="px-3 py-1 rounded-full bg-forest-900/85 backdrop-blur-md text-white text-[11px] font-semibold tracking-wide">
+                      {item.category}
                     </span>
-                    {item.tag && (
-                      <span className="px-2.5 py-1 rounded-full bg-gold-500/90 backdrop-blur-md text-forest-950 text-[10px] font-bold tracking-wider uppercase">
-                        {item.tag}
-                      </span>
-                    )}
-                  </div>
-                  <div className="absolute bottom-4 right-4 flex items-center gap-1 px-2.5 py-1 rounded-full bg-black/60 backdrop-blur-md text-gold-300 text-xs font-semibold">
-                    <Star className="w-3.5 h-3.5 fill-gold-400 text-gold-400" />
-                    <span>{item.rating}</span>
                   </div>
                 </div>
 
                 {/* Card Content */}
                 <div className="p-6">
-                  <span className="text-[11px] font-bold uppercase tracking-wider text-stone-500 block mb-1">
-                    {item.category}
-                  </span>
                   <h3 className="font-serif text-xl font-bold text-forest-950 group-hover:text-forest-700 transition-colors leading-snug">
-                    {item.title}
+                    {item.name}
                   </h3>
-                  <p className="text-stone-600 text-sm font-light mt-2 line-clamp-2 leading-relaxed">
-                    {item.description}
+                  
+                  <p className="text-stone-600 text-xs sm:text-sm font-light mt-2 line-clamp-2 leading-relaxed">
+                    {item.summary || item.tagline}
                   </p>
+
+                  {item.bestTime && (
+                    <div className="flex items-center gap-1.5 text-[11px] text-stone-500 font-light mt-3">
+                      <Clock className="w-3.5 h-3.5 text-gold-600 shrink-0" />
+                      <span className="truncate">{item.bestTime}</span>
+                    </div>
+                  )}
                 </div>
               </div>
 
-              {/* Bottom Card Action Bar */}
+              {/* Bottom Card Action Bar (Without Price) */}
               <div className="px-6 pb-6 pt-2 flex items-center justify-between border-t border-stone-200/60">
-                <div>
-                  <span className="text-xs text-stone-400 block font-light">Estimasi Biaya</span>
-                  <span className="text-sm font-semibold text-forest-900">{item.price}</span>
-                </div>
+                <span className="text-xs font-semibold text-forest-900 group-hover:text-gold-600 transition-colors">
+                  Lihat Detail Destinasi
+                </span>
                 
                 <div className="w-10 h-10 rounded-full bg-white group-hover:bg-forest-900 group-hover:text-white text-forest-900 border border-stone-300 group-hover:border-forest-900 flex items-center justify-center transition-all duration-300 shadow-sm">
                   <ArrowUpRight className="w-4 h-4 transition-transform group-hover:rotate-45" />
                 </div>
               </div>
-            </div>
+            </Link>
           ))}
         </div>
 

@@ -10,7 +10,7 @@ import {
   Sparkles,
   ShieldCheck
 } from 'lucide-react';
-import { linkHubItems, villageInfo } from '../data/villageData';
+import { linkHubItems } from '../data/villageData';
 import { InstagramIcon, YoutubeIcon, FacebookIcon, TikTokIcon } from './Icons';
 
 const iconLookup = {
@@ -23,7 +23,7 @@ const iconLookup = {
   FileDown: FileDown,
 };
 
-export default function CentralLinkHub({ onOpenBrochure, onOpenReservation }) {
+export default function CentralLinkHub({ onOpenBrochure }) {
   const [copied, setCopied] = useState(false);
   const [showQrModal, setShowQrModal] = useState(false);
 
@@ -50,7 +50,7 @@ export default function CentralLinkHub({ onOpenBrochure, onOpenReservation }) {
             Satu Pintu Akses <span className="italic font-light text-forest-800">Wisata Sangkuliman</span>
           </h2>
           <p className="text-stone-600 text-sm sm:text-base font-light mt-3">
-            Akses seluruh informasi resmi, reservasi WhatsApp, panduan rute navigasi, dan media sosial terverifikasi tanpa repot mencari link terpisah.
+            Akses seluruh informasi resmi, konsultasi WhatsApp Pokdarwis BMT, panduan navigasi jalan/feri, dan media sosial terverifikasi.
           </p>
 
           {/* Share & QR Code Quick Action Bar */}
@@ -187,7 +187,7 @@ export default function CentralLinkHub({ onOpenBrochure, onOpenReservation }) {
         {/* Verification Guarantee Badge */}
         <div className="mt-8 p-4 rounded-2xl bg-cream-100 border border-stone-200/80 flex items-center justify-center gap-3 text-stone-600 text-xs text-center">
           <ShieldCheck className="w-4 h-4 text-emerald-700 shrink-0" />
-          <span>Seluruh tautan di atas dikelola resmi oleh Pokdarwis & Pengelola Desa Wisata Sangkuliman</span>
+          <span>Seluruh tautan di atas dikelola resmi oleh Pokdarwis BMT & Pengelola Desa Wisata Sangkuliman</span>
         </div>
 
       </div>
@@ -197,12 +197,12 @@ export default function CentralLinkHub({ onOpenBrochure, onOpenReservation }) {
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm animate-fadeIn">
           <div className="bg-white rounded-3xl p-6 sm:p-8 max-w-sm w-full shadow-2xl text-center relative border border-stone-200">
             <h3 className="font-serif text-xl font-bold text-forest-950 mb-1">Scan QR Desa Sangkuliman</h3>
-            <p className="text-xs text-stone-500 mb-6">Pindai dengan kamera smartphone untuk membuka website resmi</p>
+            <p className="text-xs text-stone-500 mb-6">Pindai dengan kamera ponsel untuk membuka website resmi</p>
             
             <div className="bg-cream-100 p-6 rounded-2xl inline-block border border-stone-200 shadow-inner mb-6">
               <div className="w-48 h-48 bg-white p-3 rounded-xl flex items-center justify-center border border-stone-200">
                 <img
-                  src="https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=https://desasangkuliman.id"
+                  src="https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=https://desawisatasangkuliman.id"
                   alt="QR Code Desa Wisata Sangkuliman"
                   className="w-full h-full object-contain"
                 />
