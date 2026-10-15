@@ -8,8 +8,9 @@ export default function SplitBlock({
   text,
   caption,
   className = "",
-  photoPosition,
-  photoZoom,
+  photoPosition = "center",
+  photoZoom = 1,
+  photoFit = "cover",
 }) {
   const [isVisible, setIsVisible] = useState(false);
   const blockRef = useRef(null);
@@ -22,7 +23,7 @@ export default function SplitBlock({
           observer.disconnect();
         }
       },
-      { threshold: 0.15 }
+      { threshold: 0.05, rootMargin: '100px' }
     );
 
     if (blockRef.current) {
@@ -50,14 +51,27 @@ export default function SplitBlock({
             isImageLeft ? 'lg:order-1' : 'lg:order-2'
           }`}
         >
-          <div className="relative rounded-3xl overflow-hidden shadow-card border border-stone-200/80 group">
+          <div className="relative rounded-3xl overflow-hidden shadow-card border border-stone-200/80 bg-forest-950 group">
+            {/* Ambient blurred backdrop if photoFit is contain */}
+            {photoFit === 'contain' && imageSrc && (
+              <div className="absolute inset-0 overflow-hidden pointer-events-none">
+                <img
+                  src={imageSrc}
+                  alt=""
+                  className="w-full h-full object-cover filter blur-2xl opacity-35 scale-110"
+                />
+              </div>
+            )}
             <ImageWithFallback
               src={imageSrc}
               alt={title || "Dokumentasi Sangkuliman"}
-              className="w-full h-80 sm:h-96 md:h-[420px] object-cover"
+              className={`w-full h-80 sm:h-96 md:h-[420px] ${
+                photoFit === 'contain' ? 'object-contain object-center' : 'object-cover'
+              }`}
               caption={caption}
-              objectPosition={photoPosition}
-              scale={photoZoom}
+              containerClassName="w-full h-full"
+              objectPosition={photoPosition || "center"}
+              scale={photoZoom && photoZoom >= 0.8 ? photoZoom : 1}
             />
             {/* Subtle aesthetic accent border */}
             <div className="absolute inset-0 rounded-3xl ring-1 ring-inset ring-black/10 pointer-events-none"></div>

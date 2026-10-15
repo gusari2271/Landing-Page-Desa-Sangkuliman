@@ -118,6 +118,7 @@ export default function AboutHistory() {
               <ImageWithFallback
                 src="/images/pemukiman-1990/coverpemukiman.png"
                 alt="Foto udara pemukiman terpadu Desa Sangkuliman yang rapi dan seragam"
+                priority={true}
                 className="w-full h-80 sm:h-96 object-cover"
                 // caption="Keteraturan tata letak rumah berkat rancangan KKN Haryono 1987"
               />

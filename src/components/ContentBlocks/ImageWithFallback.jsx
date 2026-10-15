@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Camera } from 'lucide-react';
 
 export default function ImageWithFallback({
@@ -11,14 +11,28 @@ export default function ImageWithFallback({
   objectPosition,
   scale,
   style = {},
+  priority = false,
 }) {
   const [hasError, setHasError] = useState(false);
   const [isLoaded, setIsLoaded] = useState(false);
+  const imgRef = useRef(null);
 
-  // Reset state bila prop src berubah (misal di carousel)
+  // Periksa apakah gambar sudah selesai dimuat atau ada di cache browser
   useEffect(() => {
     setHasError(false);
-    setIsLoaded(false);
+    if (imgRef.current) {
+      if (imgRef.current.complete) {
+        if (imgRef.current.naturalWidth > 0) {
+          setIsLoaded(true);
+        } else if (imgRef.current.naturalWidth === 0 && imgRef.current.src) {
+          setHasError(true);
+        }
+      } else {
+        setIsLoaded(false);
+      }
+    } else {
+      setIsLoaded(false);
+    }
   }, [src]);
 
   // Jika src kosong atau file tidak ditemukan saat dimuat
@@ -57,19 +71,36 @@ export default function ImageWithFallback({
       ) : (
         <div className="relative w-full h-full overflow-hidden">
           <img
+            ref={(node) => {
+              imgRef.current = node;
+              if (node && node.complete) {
+                if (node.naturalWidth > 0 && !isLoaded) {
+                  setIsLoaded(true);
+                } else if (node.naturalWidth === 0 && node.src && !hasError) {
+                  setHasError(true);
+                }
+              }
+            }}
             src={src}
             alt={alt}
-            loading="lazy"
-            onLoad={() => setIsLoaded(true)}
-            onError={() => setHasError(true)}
+            loading={priority ? "eager" : "lazy"}
+            fetchPriority={priority ? "high" : "auto"}
+            onLoad={() => {
+              setIsLoaded(true);
+              setHasError(false);
+            }}
+            onError={() => {
+              setHasError(true);
+              setIsLoaded(false);
+            }}
             onClick={onClick}
             style={imageStyle}
-            className={`w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 ${
+            className={`w-full h-full object-cover transition-opacity duration-500 group-hover:scale-105 ${
               onClick ? 'cursor-pointer' : ''
-            } ${isLoaded ? 'opacity-100' : 'opacity-0'} ${className}`}
+            } ${isLoaded ? 'opacity-100' : (priority ? 'opacity-95' : 'opacity-0')} ${className}`}
           />
-          {!isLoaded && !hasError && (
-            <div className="absolute inset-0 bg-forest-900/30 animate-pulse"></div>
+          {!isLoaded && !hasError && !priority && (
+            <div className="absolute inset-0 bg-forest-900/30 animate-pulse pointer-events-none"></div>
           )}
         </div>
       )}

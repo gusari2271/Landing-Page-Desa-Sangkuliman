@@ -12,6 +12,7 @@ export default function Hero({ onOpenVideo }) {
         <ImageWithFallback
           src="/images/hero/Desa Sangkuliman 1 hero page.png"
           alt="Panorama Alam dan Pemukiman Desa Wisata Sangkuliman"
+          priority={true}
           className="w-full h-full object-cover object-center filter brightness-[0.85]"
         />
         {/* Multilayer gradient overlays */}

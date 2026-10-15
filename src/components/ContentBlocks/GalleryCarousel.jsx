@@ -12,6 +12,9 @@ export default function GalleryCarousel({
   caption = "",
   title = "Galeri Foto Eksplorasi",
   className = "",
+  photoFit = "cover",
+  photoPosition = "center",
+  photoZoom = 1,
 }) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [lightboxOpen, setLightboxOpen] = useState(false);
@@ -85,12 +88,29 @@ export default function GalleryCarousel({
         onTouchStart={handleTouchStart}
         onTouchEnd={handleTouchEnd}
       >
-        <div className="relative h-72 sm:h-96 md:h-[480px] w-full flex items-center justify-center overflow-hidden">
+        <div className="relative h-72 sm:h-96 md:h-[480px] w-full flex items-center justify-center overflow-hidden bg-forest-950">
+          {/* Ambient blurred backdrop so any ratio photo looks beautiful */}
+          {images && images[currentIndex] && (
+            <div className="absolute inset-0 overflow-hidden pointer-events-none">
+              <img
+                src={images[currentIndex]}
+                alt=""
+                className="w-full h-full object-cover filter blur-3xl opacity-30 scale-110"
+              />
+            </div>
+          )}
+
           <ImageWithFallback
             key={images[currentIndex]}
             src={images[currentIndex]}
             alt={`${title} - Foto ${currentIndex + 1}`}
-            className="w-full h-full object-cover transition-all duration-500"
+            priority={true}
+            className={`w-full h-full transition-all duration-500 relative z-10 cursor-pointer ${
+              photoFit === 'contain' ? 'object-contain object-center' : 'object-cover'
+            }`}
+            containerClassName="w-full h-full"
+            objectPosition={photoPosition || "center"}
+            scale={photoZoom && photoZoom >= 0.8 ? photoZoom : 1}
             onClick={() => setLightboxOpen(true)}
           />
 

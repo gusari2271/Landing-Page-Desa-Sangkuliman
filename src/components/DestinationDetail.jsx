@@ -116,15 +116,29 @@ export default function DestinationDetail() {
       <header className="relative min-h-[50vh] sm:min-h-[60vh] lg:min-h-[70vh] flex items-end justify-center overflow-hidden bg-forest-950">
         {/* Cover Photo with Subtle Overlay */}
         <div className="absolute inset-0 z-0">
+          {/* Ambient blurred backdrop if fit is contain */}
+          {destination.coverFit === 'contain' && (
+            <div className="absolute inset-0 overflow-hidden">
+              <img
+                src={destination.cover}
+                alt=""
+                className="w-full h-full object-cover filter blur-3xl opacity-40 scale-110"
+              />
+            </div>
+          )}
+
           <ImageWithFallback
             src={destination.cover}
             alt={destination.name}
-            className="w-full h-full object-cover filter brightness-[0.82]"
+            priority={true}
+            className={`w-full h-full filter brightness-[0.85] ${
+              destination.coverFit === 'contain' ? 'object-contain object-center' : 'object-cover'
+            }`}
             containerClassName="w-full h-full"
-            objectPosition={destination.coverPosition}
-            scale={destination.coverZoom}
+            objectPosition={destination.coverPosition || 'center'}
+            scale={destination.coverZoom && destination.coverZoom >= 0.8 ? destination.coverZoom : 1}
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-forest-950 via-forest-950/50 to-transparent"></div>
+          <div className="absolute inset-0 bg-gradient-to-t from-forest-950 via-forest-950/60 to-transparent"></div>
           <div className="absolute inset-0 bg-gradient-to-r from-forest-950/70 via-transparent to-black/30"></div>
         </div>
 
@@ -195,6 +209,7 @@ export default function DestinationDetail() {
                   caption={block.caption}
                   photoPosition={block.photoPosition}
                   photoZoom={block.photoZoom}
+                  photoFit={block.photoFit}
                 />
               );
 
@@ -205,6 +220,9 @@ export default function DestinationDetail() {
                   images={block.images}
                   caption={block.caption}
                   title={block.title || `Galeri Foto ${destination.name}`}
+                  photoFit={block.photoFit}
+                  photoPosition={block.photoPosition}
+                  photoZoom={block.photoZoom}
                 />
               );
 
@@ -325,6 +343,9 @@ export default function DestinationDetail() {
                         src={other.cover}
                         alt={other.name}
                         className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                        containerClassName="w-full h-full"
+                        objectPosition={other.coverPosition || 'center'}
+                        scale={other.coverZoom && other.coverZoom >= 0.8 ? other.coverZoom : 1}
                       />
                       <div className="absolute top-3 left-3">
                         <span className="px-2.5 py-1 rounded-full bg-forest-900/85 backdrop-blur-md text-white text-[10px] font-semibold tracking-wider">

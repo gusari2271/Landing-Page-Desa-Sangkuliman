@@ -242,8 +242,9 @@ export const destinations = [
     tagline: "Edukasi Pembelajaran Mamalia Air Tawar Langka Sungai Mahakam",
     bestTime: "Sore, pagi, maupun malam hari saat air tenang",
     cover: "/images/pesut-mahakam/cover.jpg",
-    coverPosition: "center 38%", // Atur fokus foto: 'center', 'top', 'bottom', 'left', 'right', atau persentase misal 'center 35%' (geser atas/bawah/kiri/kanan)
-    coverZoom: 1.05,             // Zoom foto: 1 (normal 100%), 1.1 (zoom in 10%), 1.25 (zoom in 25%), 0.95 (zoom out)
+    coverPosition: "center 38%", // Atur fokus foto: 'center', 'center 38%', 'top', 'bottom', atau persentase misal 'center 35%'
+    coverZoom: 1,                // Zoom foto: 1 (normal 100%), 1.1 (zoom in 10%), 1.25 (zoom in 25%) - selalu gunakan >= 0.8 agar tajam
+    coverFit: "cover",           // 'cover' (penuh rasio layar) atau 'contain' (tampil utuh 100% tanpa crop dengan ambient blur di belakang)
     summary: "Menyaksikan sekawanan lumba-lumba air tawar langka yang dilindungi di habitat alaminya di sekitar perairan Sungai Mahakam dan anak sungainya.",
     blocks: [
       {
@@ -256,14 +257,20 @@ export const destinations = [
         imagePosition: "left",
         images: ["/images/pesut-mahakam/1.jpg"],
         title: "Menikmati Atraksi Alami Tanpa Sekat",
-        text: "Pesut Mahakam dapat muncul di mana saja di perairan Sungai Mahakam desa, tidak hanya terpaku pada satu titik tertentu. Pengunjung dapat menyaksikan sekawanan pesut berenang mencari makan dari tepi sungai, serambi rumah warga, rakit apung, maupun perahu ces ketinting. Cukup sediakan kamera di tangan untuk mengabadikan momen langka saat pesut menyemburkan air dari lubang pernapasannya."
+        text: "Pesut Mahakam dapat muncul di mana saja di perairan Sungai Mahakam desa, tidak hanya terpaku pada satu titik tertentu. Pengunjung dapat menyaksikan sekawanan pesut berenang mencari makan dari tepi sungai, serambi rumah warga, rakit apung, maupun perahu ces ketinting. Cukup sediakan kamera di tangan untuk mengabadikan momen langka saat pesut menyemburkan air dari lubang pernapasannya.",
+        photoPosition: "center",
+        photoZoom: 1,
+        photoFit: "cover"
       },
       {
         type: "split",
         imagePosition: "right",
         images: ["/images/pesut-mahakam/2.jpg"],
         title: "Bermalam di Homestay & Diskusi Bersama Pokdarwis",
-        text: "Bermalam di homestay warga Desa Wisata Sangkuliman memberi kesempatan istimewa menyaksikan kemunculan pesut di waktu fajar atau temaram senja. Wisatawan dapat menikmati suasana desa yang asri, duduk santai dalam diskusi ringan bersama pengurus Pokdarwis BMT sambil ditemani semburan air pesut di aliran sungai yang tenang."
+        text: "Bermalam di homestay warga Desa Wisata Sangkuliman memberi kesempatan istimewa menyaksikan kemunculan pesut di waktu fajar atau temaram senja. Wisatawan dapat menikmati suasana desa yang asri, duduk santai dalam diskusi ringan bersama pengurus Pokdarwis BMT sambil ditemani semburan air pesut di aliran sungai yang tenang.",
+        photoPosition: "center",
+        photoZoom: 1,
+        photoFit: "cover"
       },
       {
         type: "responsible",
@@ -302,6 +309,9 @@ export const destinations = [
     tagline: "Kisah Putri Penjaga Kampong di Antara Dua Danau & Dua Sungai",
     bestTime: "Saat penyambutan tamu wisata, pagelaran seni desa, & festival budaya",
     cover: "/images/tari-jepen/cover.jpg",
+    coverPosition: "center 30%", // Menyelaraskan fokus ke busana penari & mahkota jepen
+    coverZoom: 1,                // Skala 1 (100%) menjaga ketajaman resolusi asli tanpa pecah/blur
+    coverFit: "cover",           // 'cover' atau 'contain'
     summary: "Tarian khas garapan Sanggar Seni Saguntur Bertata Menata Tertata yang mengangkat mitos Putri Kuning penjaga kampung nelayan dan Gunung Tallo.",
     blocks: [
       {
@@ -314,14 +324,20 @@ export const destinations = [
         imagePosition: "left",
         images: ["/images/tari-jepen/1.jpg"],
         title: "Legenda Putri Kuning & Benteng Gunung Tallo",
-        text: "Alkisah, pulau ini dahulunya tidak berpenghuni dan dijaga oleh seorang putri cantik rupawan bernama Putri Kuning yang bertahta di istana megah bersama rakyat yang hidup makmur sejahtera. Ketika peradaban berganti menjadi Kampung Nelayan di mana warga mencari ikan di danau, sungai, dan luah menggunakan gubeng serta alat tangkap tradisional, Putri Kuning beserta rakyatnya berpindah menetap di Gunung Tallo. Dari sana, sang putri menjadi perisai danau, sungai, dan luah agar kampung tetap lestari."
+        text: "Alkisah, pulau ini dahulunya tidak berpenghuni dan dijaga oleh seorang putri cantik rupawan bernama Putri Kuning yang bertahta di istana megah bersama rakyat yang hidup makmur sejahtera. Ketika peradaban berganti menjadi Kampung Nelayan di mana warga mencari ikan di danau, sungai, dan luah menggunakan gubeng serta alat tangkap tradisional, Putri Kuning beserta rakyatnya berpindah menetap di Gunung Tallo. Dari sana, sang putri menjadi perisai danau, sungai, dan luah agar kampung tetap lestari.",
+        photoPosition: "center",
+        photoZoom: 1,
+        photoFit: "cover"
       },
       {
         type: "split",
         imagePosition: "right",
         images: ["/images/tari-jepen/2.jpg"],
         title: "Kekayaan Alam & Satwa dalam Balutan Gerak",
-        text: "Gerak tari ini menyiratkan keragaman hayati Sangkuliman: ikan gabus, jilawat, repang, kendia, puyau, sepat siam, biawan, lais, lepok, kelabiri, lalang, patin, baung, keli, panang, dan papuyu di perairan; serta satwa hutan seperti kijang, babi hutan, lutung, bekantan, kera, burung enggang, burung elang, burung bekakah, cuing, dan burung hantu."
+        text: "Gerak tari ini menyiratkan keragaman hayati Sangkuliman: ikan gabus, jilawat, repang, kendia, puyau, sepat siam, biawan, lais, lepok, kelabiri, lalang, patin, baung, keli, panang, dan papuyu di perairan; serta satwa hutan seperti kijang, babi hutan, lutung, bekantan, kera, burung enggang, burung elang, burung bekakah, cuing, dan burung hantu.",
+        photoPosition: "center",
+        photoZoom: 1,
+        photoFit: "cover"
       },
       {
         type: "fulltext",
@@ -349,6 +365,9 @@ export const destinations = [
     tagline: "Pulau Tiga Gundukan Berpagar Akar Jaraya & Perlindungan Sejarah",
     bestTime: "Musim kemarau dan saat peralihan air naik",
     cover: "/images/gunung-tallo/cover.jpg",
+    coverPosition: "center",
+    coverZoom: 1,
+    coverFit: "cover",
     summary: "Pulau seluas hampir 2 hektar dengan tiga gundukan mistis, pintu gerbang akar jaraya, dan belasan jenis pohon hutan langka yang tidak pernah tenggelam banjir.",
     blocks: [
       {
@@ -361,14 +380,20 @@ export const destinations = [
         imagePosition: "left",
         images: ["/images/gunung-tallo/1.jpg"],
         title: "Keunikan Akar Jaraya & Pohon Misterius Tanpa Kulit",
-        text: "Salah satu keajaiban botani di Gunung Tallo adalah tumbuhan bernama 'Akar Jaraya'. Tumbuhan ini hidup merambat panjang dan sangat kuat mengitari gundukan tinggi, membentuk gerbang alami yang hanya ditemukan di kawasan ini. Konon di masa kerajaan dan penjajahan, gerbang akar ini menjadi tempat persembunyian pejuang pribumi dari kepungan musuh. Selain itu, terdapat sebatang pohon misterius tanpa kulit yang sangat keras, kokoh, dan hingga kini belum diketahui spesies pastinya."
+        text: "Salah satu keajaiban botani di Gunung Tallo adalah tumbuhan bernama 'Akar Jaraya'. Tumbuhan ini hidup merambat panjang dan sangat kuat mengitari gundukan tinggi, membentuk gerbang alami yang hanya ditemukan di kawasan ini. Konon di masa kerajaan dan penjajahan, gerbang akar ini menjadi tempat persembunyian pejuang pribumi dari kepungan musuh. Selain itu, terdapat sebatang pohon misterius tanpa kulit yang sangat keras, kokoh, dan hingga kini belum diketahui spesies pastinya.",
+        photoPosition: "center",
+        photoZoom: 1,
+        photoFit: "cover"
       },
       {
         type: "split",
         imagePosition: "right",
         images: ["/images/gunung-tallo/2.jpg"],
         title: "Habitat Belasan Pohon Langka & Satwa Rimba",
-        text: "Kawasan hutan Gunung Tallo menyimpan pohon-pohon langka seperti belikara, banglon, bunghur, rengas, berunai, ketumbu, jambu hutan, kahoy, perupuk, dan jalume. Hutan ini juga menjadi rumah bagi kawanan lutung, kera, burung bekakah, ketutupi, cuwing, buawak, serta burung elang."
+        text: "Kawasan hutan Gunung Tallo menyimpan pohon-pohon langka seperti belikara, banglon, bunghur, rengas, berunai, ketumbu, jambu hutan, kahoy, perupuk, dan jalume. Hutan ini juga menjadi rumah bagi kawanan lutung, kera, burung bekakah, ketutupi, cuwing, buawak, serta burung elang.",
+        photoPosition: "center",
+        photoZoom: 1,
+        photoFit: "cover"
       },
       {
         type: "fulltext",
@@ -396,7 +421,10 @@ export const destinations = [
     category: "Spot Alam / Sunset",
     tagline: "Harmoni Lanskap Menjorok ke Danau dengan Sunset Spektakuler",
     bestTime: "Air pasang besar dan musim kemarau menjelang senja",
-    cover: "/images/tanjung-rappeh/cover.jpg",
+    cover: "/images/tanjung-rappeh/cover.png",
+    coverPosition: "center 35%", // Menyelaraskan lanskap tanjung & pantulan danau
+    coverZoom: 1,
+    coverFit: "cover",
     summary: "Tanjung menjorok sepanjang 400 meter berhadapan dengan Tanjung Palla, lokasi terbaik menyaksikan matahari terbenam di ufuk barat Danau Semayang.",
     blocks: [
       {
@@ -409,14 +437,30 @@ export const destinations = [
         imagePosition: "left",
         images: ["/images/tanjung-rappeh/1.jpg"],
         title: "Dua Wajah di Dua Musim Berbeda",
-        text: "Tanjung Rappeh menghadirkan lanskap yang kontras namun sama-sama memesona di setiap musim. Pada musim kemarau, daratan tanjung berubah menjadi hamparan padang rumput hijau yang luas dan nyaman untuk area berkemah (camping). Sementara saat musim banjir air pasang besar, panorama tanjung kian magis dengan pepohonan kokoh yang berdiri megah mencuat dari dalam permukaan air danau."
+        text: "Tanjung Rappeh menghadirkan lanskap yang kontras namun sama-sama memesona di setiap musim. Pada musim kemarau, daratan tanjung berubah menjadi hamparan padang rumput hijau yang luas dan nyaman untuk area berkemah (camping). Sementara saat musim banjir air pasang besar, panorama tanjung kian magis dengan pepohonan kokoh yang berdiri megah mencuat dari dalam permukaan air danau.",
+        photoPosition: "center",
+        photoZoom: 1,
+        photoFit: "cover"
       },
       {
         type: "split",
         imagePosition: "right",
         images: ["/images/tanjung-rappeh/2.jpg"],
+        title: "Keceriaan Wisatawan Susur Danau Semayang",
+        text: "Menyusuri perairan Danau Semayang menuju Tanjung Rappeh menghadirkan pengalaman berwisata yang tak terlupakan. Bersama perahu wisata warga dan pemandu lokal Pokdarwis BMT, para pengunjung dapat menikmati semilir angin danau, panorama terbuka yang luas, serta kehangatan keramahan masyarakat kampung nelayan.",
+        photoPosition: "center",
+        photoZoom: 1,
+        photoFit: "cover"
+      },
+      {
+        type: "split",
+        imagePosition: "left",
+        images: ["/images/tanjung-rappeh/3.jpg"],
         title: "Penjaga Alami Terpaan Ombak Danau",
-        text: "Tanjung Rappeh merupakan titik terdepan yang menahan hantaman ombak Danau Semayang. Terpaan ombak yang berkala mengikis tepi tanjung hingga membentuk hamparan pasir pantai tepi danau yang unik. Warga lingkungan nelayan senantiasa merawat pepohonan yang tersisa dan bersama Pokdarwis BMT menggalakkan penanaman pohon pelindung di bibir tanjung agar terhindar dari abrasi."
+        text: "Tanjung Rappeh merupakan titik terdepan yang menahan hantaman ombak Danau Semayang. Terpaan ombak yang berkala mengikis tepi tanjung hingga membentuk hamparan pasir pantai tepi danau yang unik. Pepohonan kokoh yang tumbuh berjejer di bibir tanjung menjadi benteng alami penahan abrasi sekaligus saksi bisu keindahan lanskap air danau yang magis.",
+        photoPosition: "center",
+        photoZoom: 1,
+        photoFit: "cover"
       },
       {
         type: "fulltext",
@@ -445,6 +489,9 @@ export const destinations = [
     tagline: "Benteng Penyangga Ombak & Edukasi Gembala Sapi Kalang",
     bestTime: "Air pasang besar dan musim kemarau",
     cover: "/images/tanjung-palla/cover.jpg",
+    coverPosition: "center",
+    coverZoom: 1,
+    coverFit: "cover",
     summary: "Dataran tinggi sepanjang 2 km dengan barisan pohon kayu tahan air berakar kokoh, pemecah gulma Danau Semayang, serta lokasi unik gembala sapi kalang.",
     blocks: [
       {
@@ -457,14 +504,20 @@ export const destinations = [
         imagePosition: "left",
         images: ["/images/tanjung-palla/1.jpg"],
         title: "Wisata Edukasi Gembala Sapi Kalang",
-        text: "Selain menjadi tempat teduh untuk menikmati indahnya matahari terbenam Danau Semayang, Tanjung Palla menyuguhkan daya tarik edukasi peternakan sapi kalang. Di sini wisatawan dapat belajar bagaimana warga memelihara dan menggembalakan sapi yang tangguh berhadapan dengan musim banjir. Tumbuhan gulma yang tersangkut dan tumbuh subur di lahan tanjung dimanfaatkan sebagai pakan alami melimpah, meringankan peternak yang sebelumnya harus mencari rumput jauh ke Desa Kedang Murung, Kota Bangun Seberang, atau Sebelimbingan."
+        text: "Selain menjadi tempat teduh untuk menikmati indahnya matahari terbenam Danau Semayang, Tanjung Palla menyuguhkan daya tarik edukasi peternakan sapi kalang. Di sini wisatawan dapat belajar bagaimana warga memelihara dan menggembalakan sapi yang tangguh berhadapan dengan musim banjir. Tumbuhan gulma yang tersangkut dan tumbuh subur di lahan tanjung dimanfaatkan sebagai pakan alami melimpah, meringankan peternak yang sebelumnya harus mencari rumput jauh ke Desa Kedang Murung, Kota Bangun Seberang, atau Sebelimbingan.",
+        photoPosition: "center",
+        photoZoom: 1,
+        photoFit: "cover"
       },
       {
         type: "split",
         imagePosition: "right",
         images: ["/images/tanjung-palla/2.jpg"],
         title: "Gerakan Kolaborasi Tanam Pohon Tahan Air",
-        text: "Mengingat pentingnya fungsi Tanjung Palla sebagai penahan abrasi dan gelombang, Pokdarwis BMT terus mendorong program penanaman pohon tahan air berkelanjutan. Inisiatif komunitas ini berkolaborasi erat dengan Pemerintahan Desa Sangkuliman, Dinas Lingkungan Hidup dan Kehutanan (DLHK) Kabupaten Kutai Kartanegara, serta DLHK Provinsi Kalimantan Timur."
+        text: "Mengingat pentingnya fungsi Tanjung Palla sebagai penahan abrasi dan gelombang, Pokdarwis BMT terus mendorong program penanaman pohon tahan air berkelanjutan. Inisiatif komunitas ini berkolaborasi erat dengan Pemerintahan Desa Sangkuliman, Dinas Lingkungan Hidup dan Kehutanan (DLHK) Kabupaten Kutai Kartanegara, serta DLHK Provinsi Kalimantan Timur.",
+        photoPosition: "center",
+        photoZoom: 1,
+        photoFit: "cover"
       },
       {
         type: "fulltext",
@@ -493,6 +546,9 @@ export const destinations = [
     tagline: "Sahabat Sejati Para Nelayan di Tengah Bentang Danau Semayang 13.000 Hektar",
     bestTime: "Air pasang besar, pasang sedang, dan musim kemarau",
     cover: "/images/tanjung-hallat/cover.jpg",
+    coverPosition: "center",
+    coverZoom: 1,
+    coverFit: "cover",
     summary: "Satu-satunya pulau di tengah Danau Semayang seluas 13.000 hektar. Tempat berteduh nelayan saat badai, pusat edukasi 5 alat tangkap tradisional, konservasi pohon tahan air, dan spot camping terbaik.",
     blocks: [
       {
@@ -505,7 +561,10 @@ export const destinations = [
         imagePosition: "left",
         images: ["/images/tanjung-hallat/1.jpg"],
         title: "Peneduh Nelayan dari Amukan Badai & Gelombang",
-        text: "Tanjung Hallat memiliki peran vital bagi keselamatan nelayan Danau Semayang. Nelayan sejati diuji mental dan kesabarannya oleh alam saat bertarung melawan ombak besar, terik panas, dan hujan lebat. Ketika angin kencang mendadak turun dan gelombang mengombang-ambingkan perahu di tengah danau, Pulau Hallat adalah tempat perlindungan utama bagi perahu nelayan untuk bersandar dan berteduh hingga cuaca kembali tenang."
+        text: "Tanjung Hallat memiliki peran vital bagi keselamatan nelayan Danau Semayang. Nelayan sejati diuji mental dan kesabarannya oleh alam saat bertarung melawan ombak besar, terik panas, dan hujan lebat. Ketika angin kencang mendadak turun dan gelombang mengombang-ambingkan perahu di tengah danau, Pulau Hallat adalah tempat perlindungan utama bagi perahu nelayan untuk bersandar dan berteduh hingga cuaca kembali tenang.",
+        photoPosition: "center",
+        photoZoom: 1,
+        photoFit: "cover"
       },
       {
         type: "water-seasons",
@@ -517,7 +576,10 @@ export const destinations = [
         imagePosition: "right",
         images: ["/images/tanjung-hallat/2.jpg"],
         title: "Pesona Padang Rumput Kemarau & Aktivitas Camping",
-        text: "Saat musim kemarau, permukaan Tanjung Hallat bertransformasi menjadi padang rumput hijau yang luas memukau dengan perpaduan dasar tanah liat, lumpur, dan pasir. Kawasan ini menjadi tempat favorit bagi wisatawan untuk mendirikan tenda perkemahan (camping) dan memasang hammock di bawah rindangnya pepohonan, menikmati heningnya malam dan gemerlap langit bintang di tengah danau."
+        text: "Saat musim kemarau, permukaan Tanjung Hallat bertransformasi menjadi padang rumput hijau yang luas memukau dengan perpaduan dasar tanah liat, lumpur, dan pasir. Kawasan ini menjadi tempat favorit bagi wisatawan untuk mendirikan tenda perkemahan (camping) dan memasang hammock di bawah rindangnya pepohonan, menikmati heningnya malam dan gemerlap langit bintang di tengah danau.",
+        photoPosition: "center",
+        photoZoom: 1,
+        photoFit: "cover"
       },
       {
         type: "fishing-gears",
@@ -569,6 +631,9 @@ export const destinations = [
           "/images/tanjung-hallat/3.jpg",
           "/images/tanjung-hallat/4.jpg"
         ],
+        photoPosition: "center",
+        photoZoom: 1,
+        photoFit: "cover",
         caption: "Dokumentasi keasrian Tanjung Hallat, plang kayu identitas pulau, suasana camping tenda, dan penanaman pohon bersama Pokdarwis BMT."
       },
       {
@@ -598,6 +663,9 @@ export const destinations = [
     tagline: "Percabangan Sungai Alami Menghubungkan Danau, Luah, & Tanjung",
     bestTime: "Saat air pasang besar dan musim kemarau",
     cover: "/images/luah-palla/cover.jpg",
+    coverPosition: "center",
+    coverZoom: 1,
+    coverFit: "cover",
     summary: "Percabangan sungai alami sepanjang hampir 3 km dengan air tenang dan jernih, jalur utama feri dan long boat berpayung pepohonan asri.",
     blocks: [
       {
@@ -610,14 +678,20 @@ export const destinations = [
         imagePosition: "left",
         images: ["/images/luah-palla/1.jpg"],
         title: "Jalur Transportasi Air Berair Jernih & Tenang",
-        text: "Dengan air yang tenang dan jernih serta deretan pepohonan kokoh yang asri di sisi kanan dan kiri, Luah Palla menjadi jalur favorit transportasi perahu nelayan, kapal feri penyeberangan, hingga perahu long boat wisata. Jalur ini menjadi andalan utama Pokdarwis BMT dalam mengusung paket bertajuk 'Susuri Danau, Sungai, dan Luah' yang banyak memukau wisatawan lokal maupun mancanegara."
+        text: "Dengan air yang tenang dan jernih serta deretan pepohonan kokoh yang asri di sisi kanan dan kiri, Luah Palla menjadi jalur favorit transportasi perahu nelayan, kapal feri penyeberangan, hingga perahu long boat wisata. Jalur ini menjadi andalan utama Pokdarwis BMT dalam mengusung paket bertajuk 'Susuri Danau, Sungai, dan Luah' yang banyak memukau wisatawan lokal maupun mancanegara.",
+        photoPosition: "center",
+        photoZoom: 1,
+        photoFit: "cover"
       },
       {
         type: "split",
         imagePosition: "right",
         images: ["/images/luah-palla/2.jpg"],
         title: "Gotong Royong Mengurai Gulma & Konservasi Hijau",
-        text: "Pada musim air pasang besar, jalur aliran luah terkadang tertutup oleh rumpun gulma air (ambul). Warga bersama komunitas Pokdarwis bergotong royong membelah dan mengurainya bersama agar jalur perahu kembali terbuka. Menjaga kelestarian Luah Palla adalah bagian dari komitmen ekonomi hijau desa untuk mendukung pariwisata berkelanjutan, perikanan air tawar, dan UMKM."
+        text: "Pada musim air pasang besar, jalur aliran luah terkadang tertutup oleh rumpun gulma air (ambul). Warga bersama komunitas Pokdarwis bergotong royong membelah dan mengurainya bersama agar jalur perahu kembali terbuka. Menjaga kelestarian Luah Palla adalah bagian dari komitmen ekonomi hijau desa untuk mendukung pariwisata berkelanjutan, perikanan air tawar, dan UMKM.",
+        photoPosition: "center",
+        photoZoom: 1,
+        photoFit: "cover"
       }
     ],
     quickInfo: {
@@ -641,6 +715,9 @@ export const destinations = [
     tagline: "Aliran Surga Nelayan saat Surut & Fenomena Sapi Berenang",
     bestTime: "Saat air surut / musim kemarau dan waktu air pasang besar",
     cover: "/images/luah-ulaman/cover.jpg",
+    coverPosition: "center",
+    coverZoom: 1,
+    coverFit: "cover",
     summary: "Spot mencari ikan saat surut ketika air danau mengalir ke sini. Tempat melihat alat tangkap Sangga rakit, satwa primata, dan pemandangan langka sapi berenang.",
     blocks: [
       {
@@ -653,7 +730,10 @@ export const destinations = [
         imagePosition: "left",
         images: ["/images/luah-ulaman/1.jpg"],
         title: "Alat Tangkap 'Sangga' & Fenomena Sapi Berenang",
-        text: "Saat menyusuri Luah Ulaman, pengunjung dapat menyaksikan langsung warga menangkap ikan menggunakan alat tangkap tradisional bernama 'Sangga' yang memiliki struktur rakit apung sebagai tempat penyangganya. Pemandangan kian unik dengan keberadaan kawanan sapi yang berenang menyeberangi tepian danau untuk mencari makan, ditemani riuhnya lutung dan kera yang bergelantungan di dahan pohon tepian."
+        text: "Saat menyusuri Luah Ulaman, pengunjung dapat menyaksikan langsung warga menangkap ikan menggunakan alat tangkap tradisional bernama 'Sangga' yang memiliki struktur rakit apung sebagai tempat penyangganya. Pemandangan kian unik dengan keberadaan kawanan sapi yang berenang menyeberangi tepian danau untuk mencari makan, ditemani riuhnya lutung dan kera yang bergelantungan di dahan pohon tepian.",
+        photoPosition: "center",
+        photoZoom: 1,
+        photoFit: "cover"
       },
       {
         type: "fulltext",
@@ -682,6 +762,9 @@ export const destinations = [
     tagline: "Aliran Sungai Kecil Membelah Hutan Rimbun & Jejak Tradisi Reba",
     bestTime: "Saat air pasang besar dan musim kemarau",
     cover: "/images/luah-kijang/cover.jpg",
+    coverPosition: "center",
+    coverZoom: 1,
+    coverFit: "cover",
     summary: "Aliran sungai kecil berhawa sejuk membelah hutan lebat, dipagari jajaran jebakan ranting kayu Reba warisan leluhur.",
     blocks: [
       {
@@ -694,7 +777,10 @@ export const destinations = [
         imagePosition: "left",
         images: ["/images/luah-kijang/1.jpg"],
         title: "Pagar Ranting Reba di Sepanjang Aliran",
-        text: "Di sepanjang tepian aliran Luah Kijang, terlihat pepohonan kayu rimbun dan pagar-pagar ranting kayu yang ditancapkan rapi sebagai perangkap ikan tradisional bernama 'Reba'. Keberadaan jebakan Reba di sepanjang luah ini menjadi bukti otentik kearifan lokal nelayan yang terus dirawat dan diwariskan turun-temurun hingga saat ini."
+        text: "Di sepanjang tepian aliran Luah Kijang, terlihat pepohonan kayu rimbun dan pagar-pagar ranting kayu yang ditancapkan rapi sebagai perangkap ikan tradisional bernama 'Reba'. Keberadaan jebakan Reba di sepanjang luah ini menjadi bukti otentik kearifan lokal nelayan yang terus dirawat dan diwariskan turun-temurun hingga saat ini.",
+        photoPosition: "center",
+        photoZoom: 1,
+        photoFit: "cover"
       }
     ],
     quickInfo: {
@@ -718,6 +804,9 @@ export const destinations = [
     tagline: "Penyelamat Kampong Nelayan, Pohon Penunggu Danau 40 Meter, & Mitos Sakti Cakki",
     bestTime: "Air pasang besar dan musim kemarau",
     cover: "/images/danau-saguntur/cover.jpg",
+    coverPosition: "center",
+    coverZoom: 1,
+    coverFit: "cover",
     summary: "Danau luas penghubung 8 luah dan jalur pintas 5 desa. Memiliki pohon penunggu setinggi 40m di tengah danau, pemecah gelombang pemukiman, serta legenda sakti pemuda Cakki.",
     blocks: [
       {
@@ -730,7 +819,10 @@ export const destinations = [
         imagePosition: "left",
         images: ["/images/danau-saguntur/1.jpg"],
         title: "Pohon Berusia Ratusan Tahun & Penahan Gelombang",
-        text: "Tepat di tengah Danau Saguntur, berdiri sebatang pohon tua 'penunggu danau' yang menjulang setinggi hampir 40 meter dengan lingkar batang 4 meter dan dedaunan sangat lebat yang menaungi area seluas lapangan sepak bola. Pohon-pohon besar dan pulau pulau kecil di Danau Saguntur ini berfungsi sebagai pemecah gelombang dan penyangga gulma besar Danau Semayang seluas 13.000 hektar agar tidak langsung menyeruak tumpah menghantam pemukiman warga di bantaran Sungai Mahakam."
+        text: "Tepat di tengah Danau Saguntur, berdiri sebatang pohon tua 'penunggu danau' yang menjulang setinggi hampir 40 meter dengan lingkar batang 4 meter dan dedaunan sangat lebat yang menaungi area seluas lapangan sepak bola. Pohon-pohon besar dan pulau pulau kecil di Danau Saguntur ini berfungsi sebagai pemecah gelombang dan penyangga gulma besar Danau Semayang seluas 13.000 hektar agar tidak langsung menyeruak tumpah menghantam pemukiman warga di bantaran Sungai Mahakam.",
+        photoPosition: "center",
+        photoZoom: 1,
+        photoFit: "cover"
       },
       {
         type: "legend",
@@ -743,7 +835,10 @@ export const destinations = [
         imagePosition: "right",
         images: ["/images/danau-saguntur/2.jpg"],
         title: "Kearifan Perahu Tradisional Ulin",
-        text: "Perahu tradisional warga dibuat dari batang pohon pilihan seperti kayu ulin, bengkitai, dan amring. Perahu dibuat dengan lunas kokoh, berlantai kayu yang dapat menyimpan perbekalan makanan, dilengkapi kemudi berbentuk bulan sabit yang khas, beratap daun nipah, serta dihiasi ukiran tradisional indah di bagian depan dan belakang perahu."
+        text: "Perahu tradisional warga dibuat dari batang pohon pilihan seperti kayu ulin, bengkitai, dan amring. Perahu dibuat dengan lunas kokoh, berlantai kayu yang dapat menyimpan perbekalan makanan, dilengkapi kemudi berbentuk bulan sabit yang khas, beratap daun nipah, serta dihiasi ukiran tradisional indah di bagian depan dan belakang perahu.",
+        photoPosition: "center",
+        photoZoom: 1,
+        photoFit: "cover"
       },
       {
         type: "fulltext",
@@ -772,6 +867,9 @@ export const destinations = [
     tagline: "Tata Kelola Pemukiman Rapi, Air Bersih Mandiri 1988, & Jejak Relokasi 220 KK",
     bestTime: "Sepanjang tahun (pagi atau sore hari untuk jalan santai)",
     cover: "/images/pemukiman-1990/coverpemukiman.png",
+    coverPosition: "center 45%", // Menyelaraskan deretan rumah pemukiman & pekarangan bunga
+    coverZoom: 1,
+    coverFit: "cover",
     summary: "Sejarah pemindahan 220 KK dari Desa Pela sejak 1986, diresmikan 30 Mei 1990 oleh Mensos Prof. Haryati Soebadio, penataan seragam mahasiswa KKN Haryono, dan pelopor air bersih mandiri 1988.",
     blocks: [
       {
@@ -784,21 +882,30 @@ export const destinations = [
         imagePosition: "left",
         images: ["/images/pemukiman-1990/1.jpg"],
         title: "Pembangunan Awal & Desain Tata Letak KKN Haryono",
-        text: "Pembangunan pemukiman dimulai tahun 1986 setelah pembersihan lahan, sempat terhenti, dan dilanjutkan kembali tahun 1987 dengan dana awal Rp 600.000 untuk 15 unit rumah pertama, disusul pembangunan 45 unit rumah tambahan. Keunikan desa ini terletak pada rancangan tata letak rumah yang dirancang oleh Haryono, seorang mahasiswa Kuliah Kerja Nyata (KKN). Berkat rancangannya, setiap rumah memiliki ukuran kapling dan posisi yang teratur seragam menghadap jalan, menjadikan pemukiman sangat rapi dan tertata."
+        text: "Pembangunan pemukiman dimulai tahun 1986 setelah pembersihan lahan, sempat terhenti, dan dilanjutkan kembali tahun 1987 dengan dana awal Rp 600.000 untuk 15 unit rumah pertama, disusul pembangunan 45 unit rumah tambahan. Keunikan desa ini terletak pada rancangan tata letak rumah yang dirancang oleh Haryono, seorang mahasiswa Kuliah Kerja Nyata (KKN). Berkat rancangannya, setiap rumah memiliki ukuran kapling dan posisi yang teratur seragam menghadap jalan, menjadikan pemukiman sangat rapi dan tertata.",
+        photoPosition: "center",
+        photoZoom: 1,
+        photoFit: "cover"
       },
       {
         type: "split",
         imagePosition: "right",
         images: ["/images/pemukiman-1990/2.png"],
         title: "Peresmian Mensos 1990 & Pemekaran 2012",
-        text: "Melalui proses panjang, pemukiman terpadu ini akhirnya diresmikan secara resmi pada 30 Mei 1990 oleh Menteri Sosial RI Prof. Dr. Haryati Soebadio. Sempat menyandang nama 'Nusa Indah' sebagai desa persiapan, wilayah ini kemudian resmi menjadi Desa Sangkuliman pada pemekaran tahun 2012. Dalam pemekaran tersebut, Bupati Kutai Kartanegara Rita Widyasari menetapkan nama jalan dan gang dengan nama 'Nusa Indah' sebagai penghormatan abadi terhadap identitas awal mula berdirinya desa."
+        text: "Melalui proses panjang, pemukiman terpadu ini akhirnya diresmikan secara resmi pada 30 Mei 1990 oleh Menteri Sosial RI Prof. Dr. Haryati Soebadio. Sempat menyandang nama 'Nusa Indah' sebagai desa persiapan, wilayah ini kemudian resmi menjadi Desa Sangkuliman pada pemekaran tahun 2012. Dalam pemekaran tersebut, Bupati Kutai Kartanegara Rita Widyasari menetapkan nama jalan dan gang dengan nama 'Nusa Indah' sebagai penghormatan abadi terhadap identitas awal mula berdirinya desa.",
+        photoPosition: "center",
+        photoZoom: 1,
+        photoFit: "cover"
       },
       {
         type: "split",
         imagePosition: "left",
         images: ["/images/pemukiman-1990/3.jpg"],
         title: "Pelopor Pengelolaan Air Bersih Mandiri Sejak 1988",
-        text: "Fakta sejarah yang membanggakan: pada tahun 1988, Desa Sangkuliman tercatat sebagai satu-satunya desa di Kecamatan Kota Bangun yang berhasil memiliki fasilitas pengelolaan air bersih mandiri untuk mencukupi kebutuhan sekitar 220 kepala keluarga. Kemandirian ini terus berlanjut hingga kini dengan hadirnya fasilitas instalasi air bersih bantuan hibah Pemerintah Provinsi Kalimantan Timur Tahun Anggaran 2024."
+        text: "Fakta sejarah yang membanggakan: pada tahun 1988, Desa Sangkuliman tercatat sebagai satu-satunya desa di Kecamatan Kota Bangun yang berhasil memiliki fasilitas pengelolaan air bersih mandiri untuk mencukupi kebutuhan sekitar 220 kepala keluarga. Kemandirian ini terus berlanjut hingga kini dengan hadirnya fasilitas instalasi air bersih bantuan hibah Pemerintah Provinsi Kalimantan Timur Tahun Anggaran 2024.",
+        photoPosition: "center",
+        photoZoom: 1,
+        photoFit: "cover"
       },
       {
         type: "fulltext",
@@ -828,6 +935,9 @@ export const destinations = [
     bestTime: "Pagi hari saat berangkat aktivitas & sore hari menjelang petang",
     cover: "/images/bekantan/bekantancover2.jpg",
     summary: "Kelompok sekitar 22 ekor bekantan yang hidup alami di koridor hutan sepanjang 1 km dekat pintu gerbang desa RT 001, mudah diamati langsung dari badan jalan umum.",
+    coverPosition: "center 25%", // Menyelaraskan fokus ke kepala & tubuh bekantan agar tidak terpotong
+    coverZoom: 1,                // Skala 1 (100%) menjaga ketajaman resolusi asli tanpa pecah/blur
+    coverFit: "cover",           // 'cover' atau 'contain'
     blocks: [
       {
         type: "fulltext",
@@ -837,16 +947,22 @@ export const destinations = [
       {
         type: "split",
         imagePosition: "left",
-        images: ["/images/bekantan/1.jpg"],
+        images: ["/images/bekantan/bekantancover.png"],
         title: "Pakan Alami Tumbuhan Hutan",
-        text: "Kawanan bekantan ini hidup dari berbagai tumbuhan hutan alami di ujung jalan RT 001, antara lain buah pohon kayu duri (disebut tumbuhan putri malu dengan buah duri), pohon kayu parupuk dengan buah yang dinamakan 'caping', serta pohon kayu bangalon dengan buah unik menyerupai kerantongan. Keberadaan pohon-pohon pakan inilah yang menjadi kunci bertahannya koloni bekantan di Sangkuliman."
+        text: "Kawanan bekantan ini hidup dari berbagai tumbuhan hutan alami di ujung jalan RT 001, antara lain buah pohon kayu duri (disebut tumbuhan putri malu dengan buah duri), pohon kayu parupuk dengan buah yang dinamakan 'caping', serta pohon kayu bangalon dengan buah unik menyerupai kerantongan. Keberadaan pohon-pohon pakan inilah yang menjadi kunci bertahannya koloni bekantan di Sangkuliman.",
+        photoPosition: "center",
+        photoZoom: 1,
+        photoFit: "cover"
       },
       {
         type: "split",
         imagePosition: "right",
         images: ["/images/bekantan/2.jpg"],
         title: "Mudah Diamati dari Jalan Umum Desa",
-        text: "Salah satu keistimewaan wisata satwa di Sangkuliman adalah kemudahan pengamatan. Wisatawan tidak perlu masuk jauh ke dalam rimba liar; cukup berdiri tenang di badan jalan umum desa dengan kamera atau ponsel di tangan. Kerap kali warga yang berangkat kerja di pagi hari disambut pemandangan langka kawanan bekantan bergelantungan di pucuk pohon, mematikan mesin sepeda motor sejenak untuk mengabadikan foto dan video dengan penuh rasa bangga."
+        text: "Salah satu keistimewaan wisata satwa di Sangkuliman adalah kemudahan pengamatan. Wisatawan tidak perlu masuk jauh ke dalam rimba liar; cukup berdiri tenang di badan jalan umum desa dengan kamera atau ponsel di tangan. Kerap kali warga yang berangkat kerja di pagi hari disambut pemandangan langka kawanan bekantan bergelantungan di pucuk pohon, mematikan mesin sepeda motor sejenak untuk mengabadikan foto dan video dengan penuh rasa bangga.",
+        photoPosition: "center",
+        photoZoom: 1,
+        photoFit: "cover"
       },
       {
         type: "fulltext",
@@ -875,6 +991,9 @@ export const destinations = [
     tagline: "Bermain Bola di Dataran Tinggi Bebas Banjir & Menyantap Iwak Basumap",
     bestTime: "Sore hari sepanjang tahun",
     cover: "/images/sport-tourism/cover.jpg",
+    coverPosition: "center",
+    coverZoom: 1,
+    coverFit: "cover",
     summary: "Daya tarik sport tourism lapangan sepak bola berkualitas di dataran tinggi yang tak pernah terendam pasang besar, telah dikunjungi lebih dari 200 wisatawan.",
     blocks: [
       {
@@ -887,7 +1006,10 @@ export const destinations = [
         imagePosition: "left",
         images: ["/images/sport-tourism/1.jpg"],
         title: "Telah Dikunjungi Lebih dari 200 Wisatawan",
-        text: "Kualitas rumput dan kontur lapangan yang sangat baik membuat pengunjung merasa puas dan kagum. Tercatat lebih dari 200 wisatawan dari berbagai daerah telah berkunjung untuk merasakan pengalaman berolahraga di desa ini. Mereka kagum menyaksikan bagaimana sebuah desa di tengah perairan sungai dan danau memiliki fasilitas lapangan sepak bola yang begitu prima dan tidak pernah tergenang air."
+        text: "Kualitas rumput dan kontur lapangan yang sangat baik membuat pengunjung merasa puas dan kagum. Tercatat lebih dari 200 wisatawan dari berbagai daerah telah berkunjung untuk merasakan pengalaman berolahraga di desa ini. Mereka kagum menyaksikan bagaimana sebuah desa di tengah perairan sungai dan danau memiliki fasilitas lapangan sepak bola yang begitu prima dan tidak pernah tergenang air.",
+        photoPosition: "center",
+        photoZoom: 1,
+        photoFit: "cover"
       },
       {
         type: "fulltext",
@@ -1090,7 +1212,7 @@ export const localExperiences = [
     title: "Matahari Terbenam di Tanjung Rappeh & Tanjung Palla",
     category: "Panorama Sunset",
     slug: "tanjung-rappeh",
-    image: "/images/tanjung-rappeh/cover.jpg",
+    image: "/images/tanjung-rappeh/cover.png",
     description: "Menyaksikan guratan senja emas di ufuk barat Danau Semayang dan keunikan gembala sapi kalang.",
   },
   {

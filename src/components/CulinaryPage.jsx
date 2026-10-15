@@ -68,6 +68,7 @@ export default function CulinaryPage() {
                 src={culinaryData.iconic.photo}
                 alt={culinaryData.iconic.title}
                 className="w-full h-72 sm:h-84 object-cover"
+                containerClassName="w-full h-full"
                 caption="Iwak Basumap olahan ikan air tawar khas Danau Saguntur"
               />
             </div>
@@ -116,6 +117,7 @@ export default function CulinaryPage() {
                       src={item.photo}
                       alt={item.name}
                       className="w-full h-full object-cover"
+                      containerClassName="w-full h-full"
                     />
                   </div>
                   <span className="text-[10px] uppercase font-bold text-stone-400 tracking-wider">
@@ -156,6 +158,7 @@ export default function CulinaryPage() {
                       src={item.photo}
                       alt={item.name}
                       className="w-full h-full object-cover"
+                      containerClassName="w-full h-full"
                     />
                   </div>
                   <span className="text-[10px] uppercase font-bold text-stone-400 tracking-wider">
@@ -199,6 +202,7 @@ export default function CulinaryPage() {
                       src=""
                       alt={item.name}
                       className="w-full h-full object-cover"
+                      containerClassName="w-full h-full"
                     />
                   </div>
                   <div className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-amber-100 text-amber-900 text-[10px] font-semibold mb-2">
