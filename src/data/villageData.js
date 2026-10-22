@@ -255,7 +255,7 @@ export const destinations = [
       {
         type: "split",
         imagePosition: "left",
-        images: ["/images/pesut-mahakam/1.jpg"],
+        images: ["/images/pesut-mahakam/1.png"],
         title: "Menikmati Atraksi Alami Tanpa Sekat",
         text: "Pesut Mahakam dapat muncul di mana saja di perairan Sungai Mahakam desa, tidak hanya terpaku pada satu titik tertentu. Pengunjung dapat menyaksikan sekawanan pesut berenang mencari makan dari tepi sungai, serambi rumah warga, rakit apung, maupun perahu ces ketinting. Cukup sediakan kamera di tangan untuk mengabadikan momen langka saat pesut menyemburkan air dari lubang pernapasannya.",
         photoPosition: "center",
@@ -265,7 +265,7 @@ export const destinations = [
       {
         type: "split",
         imagePosition: "right",
-        images: ["/images/pesut-mahakam/2.jpg"],
+        images: ["/images/pesut-mahakam/2.png"],
         title: "Bermalam di Homestay & Diskusi Bersama Pokdarwis",
         text: "Bermalam di homestay warga Desa Wisata Sangkuliman memberi kesempatan istimewa menyaksikan kemunculan pesut di waktu fajar atau temaram senja. Wisatawan dapat menikmati suasana desa yang asri, duduk santai dalam diskusi ringan bersama pengurus Pokdarwis BMT sambil ditemani semburan air pesut di aliran sungai yang tenang.",
         photoPosition: "center",
@@ -332,7 +332,7 @@ export const destinations = [
       {
         type: "split",
         imagePosition: "right",
-        images: ["/images/tari-jepen/2.jpg"],
+        images: ["/images/tari-jepen/2.png"],
         title: "Kekayaan Alam & Satwa dalam Balutan Gerak",
         text: "Gerak tari ini menyiratkan keragaman hayati Sangkuliman: ikan gabus, jilawat, repang, kendia, puyau, sepat siam, biawan, lais, lepok, kelabiri, lalang, patin, baung, keli, panang, dan papuyu di perairan; serta satwa hutan seperti kijang, babi hutan, lutung, bekantan, kera, burung enggang, burung elang, burung bekakah, cuing, dan burung hantu.",
         photoPosition: "center",
@@ -502,7 +502,7 @@ export const destinations = [
       {
         type: "split",
         imagePosition: "left",
-        images: ["/images/tanjung-palla/1.jpg"],
+        images: ["/images/tanjung-palla/1.JPG"],
         title: "Wisata Edukasi Gembala Sapi Kalang",
         text: "Selain menjadi tempat teduh untuk menikmati indahnya matahari terbenam Danau Semayang, Tanjung Palla menyuguhkan daya tarik edukasi peternakan sapi kalang. Di sini wisatawan dapat belajar bagaimana warga memelihara dan menggembalakan sapi yang tangguh berhadapan dengan musim banjir. Tumbuhan gulma yang tersangkut dan tumbuh subur di lahan tanjung dimanfaatkan sebagai pakan alami melimpah, meringankan peternak yang sebelumnya harus mencari rumput jauh ke Desa Kedang Murung, Kota Bangun Seberang, atau Sebelimbingan.",
         photoPosition: "center",
@@ -559,7 +559,7 @@ export const destinations = [
       {
         type: "split",
         imagePosition: "left",
-        images: ["/images/tanjung-hallat/1.jpg"],
+        images: ["/images/tanjung-hallat/1.png"],
         title: "Peneduh Nelayan dari Amukan Badai & Gelombang",
         text: "Tanjung Hallat memiliki peran vital bagi keselamatan nelayan Danau Semayang. Nelayan sejati diuji mental dan kesabarannya oleh alam saat bertarung melawan ombak besar, terik panas, dan hujan lebat. Ketika angin kencang mendadak turun dan gelombang mengombang-ambingkan perahu di tengah danau, Pulau Hallat adalah tempat perlindungan utama bagi perahu nelayan untuk bersandar dan berteduh hingga cuaca kembali tenang.",
         photoPosition: "center",
@@ -626,10 +626,10 @@ export const destinations = [
       {
         type: "gallery",
         images: [
-          "/images/tanjung-hallat/1.jpg",
+          "/images/tanjung-hallat/1.png",
           "/images/tanjung-hallat/2.jpg",
           "/images/tanjung-hallat/3.jpg",
-          "/images/tanjung-hallat/4.jpg"
+          "/images/tanjung-hallat/cover.jpg"
         ],
         photoPosition: "center",
         photoZoom: 1,
@@ -676,7 +676,7 @@ export const destinations = [
       {
         type: "split",
         imagePosition: "left",
-        images: ["/images/luah-palla/1.jpg"],
+        images: ["/images/luah-palla/1.JPG"],
         title: "Jalur Transportasi Air Berair Jernih & Tenang",
         text: "Dengan air yang tenang dan jernih serta deretan pepohonan kokoh yang asri di sisi kanan dan kiri, Luah Palla menjadi jalur favorit transportasi perahu nelayan, kapal feri penyeberangan, hingga perahu long boat wisata. Jalur ini menjadi andalan utama Pokdarwis BMT dalam mengusung paket bertajuk 'Susuri Danau, Sungai, dan Luah' yang banyak memukau wisatawan lokal maupun mancanegara.",
         photoPosition: "center",
@@ -728,7 +728,7 @@ export const destinations = [
       {
         type: "split",
         imagePosition: "left",
-        images: ["/images/luah-ulaman/1.jpg"],
+        images: ["/images/luah-ulaman/1.JPG"],
         title: "Alat Tangkap 'Sangga' & Fenomena Sapi Berenang",
         text: "Saat menyusuri Luah Ulaman, pengunjung dapat menyaksikan langsung warga menangkap ikan menggunakan alat tangkap tradisional bernama 'Sangga' yang memiliki struktur rakit apung sebagai tempat penyangganya. Pemandangan kian unik dengan keberadaan kawanan sapi yang berenang menyeberangi tepian danau untuk mencari makan, ditemani riuhnya lutung dan kera yang bergelantungan di dahan pohon tepian.",
         photoPosition: "center",
@@ -761,7 +761,7 @@ export const destinations = [
     category: "Susur Sungai",
     tagline: "Aliran Sungai Kecil Membelah Hutan Rimbun & Jejak Tradisi Reba",
     bestTime: "Saat air pasang besar dan musim kemarau",
-    cover: "/images/luah-kijang/cover.jpg",
+    cover: "/images/luah-kijang/cover.JPG",
     coverPosition: "center",
     coverZoom: 1,
     coverFit: "cover",
@@ -775,7 +775,7 @@ export const destinations = [
       {
         type: "split",
         imagePosition: "left",
-        images: ["/images/luah-kijang/1.jpg"],
+        images: ["/images/luah-kijang/1.JPG"],
         title: "Pagar Ranting Reba di Sepanjang Aliran",
         text: "Di sepanjang tepian aliran Luah Kijang, terlihat pepohonan kayu rimbun dan pagar-pagar ranting kayu yang ditancapkan rapi sebagai perangkap ikan tradisional bernama 'Reba'. Keberadaan jebakan Reba di sepanjang luah ini menjadi bukti otentik kearifan lokal nelayan yang terus dirawat dan diwariskan turun-temurun hingga saat ini.",
         photoPosition: "center",
@@ -803,7 +803,7 @@ export const destinations = [
     category: "Danau, Legenda & Konservasi",
     tagline: "Penyelamat Kampong Nelayan, Pohon Penunggu Danau 40 Meter, & Mitos Sakti Cakki",
     bestTime: "Air pasang besar dan musim kemarau",
-    cover: "/images/danau-saguntur/cover.jpg",
+    cover: "/images/danau-saguntur/cover.png",
     coverPosition: "center",
     coverZoom: 1,
     coverFit: "cover",
@@ -957,7 +957,7 @@ export const destinations = [
       {
         type: "split",
         imagePosition: "right",
-        images: ["/images/bekantan/2.jpg"],
+        images: ["/images/bekantan/2.png"],
         title: "Mudah Diamati dari Jalan Umum Desa",
         text: "Salah satu keistimewaan wisata satwa di Sangkuliman adalah kemudahan pengamatan. Wisatawan tidak perlu masuk jauh ke dalam rimba liar; cukup berdiri tenang di badan jalan umum desa dengan kamera atau ponsel di tangan. Kerap kali warga yang berangkat kerja di pagi hari disambut pemandangan langka kawanan bekantan bergelantungan di pucuk pohon, mematikan mesin sepeda motor sejenak untuk mengabadikan foto dan video dengan penuh rasa bangga.",
         photoPosition: "center",
@@ -1004,6 +1004,17 @@ export const destinations = [
       {
         type: "split",
         imagePosition: "left",
+        images: ["/images/sport-tourism/1.jpg"],
+        title: "Telah Dikunjungi Lebih dari 200 Wisatawan",
+        text: "Kualitas rumput dan kontur lapangan yang sangat baik membuat pengunjung merasa puas dan kagum. Tercatat lebih dari 200 wisatawan dari berbagai daerah telah berkunjung untuk merasakan pengalaman berolahraga di desa ini. Mereka kagum menyaksikan bagaimana sebuah desa di tengah perairan sungai dan danau memiliki fasilitas lapangan sepak bola yang begitu prima dan tidak pernah tergenang air.",
+        photoPosition: "center",
+        photoZoom: 1,
+        photoFit: "cover"
+      },
+
+      {
+        type: "split",
+        imagePosition: "right",
         images: ["/images/sport-tourism/1.jpg"],
         title: "Telah Dikunjungi Lebih dari 200 Wisatawan",
         text: "Kualitas rumput dan kontur lapangan yang sangat baik membuat pengunjung merasa puas dan kagum. Tercatat lebih dari 200 wisatawan dari berbagai daerah telah berkunjung untuk merasakan pengalaman berolahraga di desa ini. Mereka kagum menyaksikan bagaimana sebuah desa di tengah perairan sungai dan danau memiliki fasilitas lapangan sepak bola yang begitu prima dan tidak pernah tergenang air.",

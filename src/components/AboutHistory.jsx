@@ -6,10 +6,10 @@ import { Link } from 'react-router-dom';
 
 export default function AboutHistory() {
   const historyPhotos = [
-    "/images/pemukiman-1990/coverpemukiman.png",
     "/images/pemukiman-1990/1.jpg",
     "/images/pemukiman-1990/2.png",
     "/images/pemukiman-1990/3.jpg",
+    "/images/pemukiman-1990/coverpemukiman.png"
   ];
 
   return (
