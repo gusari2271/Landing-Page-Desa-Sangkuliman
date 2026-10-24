@@ -111,7 +111,7 @@ export default function Hero({ onOpenVideo }) {
         </div>
       </div>
 
-      {/* Bottom Scroll Pill Indicator */}
+      {/* Bottom Scroll Pill Indicator
       <div className="absolute bottom-6 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center">
         <a
           href="#tentang"
@@ -124,7 +124,7 @@ export default function Hero({ onOpenVideo }) {
             Scroll to Explore
           </span>
         </a>
-      </div>
+      </div> */}
 
       {/* Decorative Wave Transition */}
       <div className="absolute -bottom-1 left-0 right-0 h-10 bg-[#FBF9F5] rounded-t-[3rem] z-10"></div>

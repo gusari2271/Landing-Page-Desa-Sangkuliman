@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { createPortal } from 'react-dom';
 import { ChevronLeft, ChevronRight, X, Maximize2 } from 'lucide-react';
 import ImageWithFallback from './ImageWithFallback';
 
@@ -32,7 +33,7 @@ export default function GalleryCarousel({
     setCurrentIndex((prev) => (prev === total - 1 ? 0 : prev + 1));
   };
 
-  // Keyboard navigation
+  // Keyboard navigation & Escape key to close fullscreen
   useEffect(() => {
     const handleKeyDown = (e) => {
       if (e.key === 'ArrowLeft') {
@@ -47,6 +48,17 @@ export default function GalleryCarousel({
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [total]);
+
+  // Lock body scroll when fullscreen lightbox is active
+  useEffect(() => {
+    if (lightboxOpen) {
+      const originalOverflow = document.body.style.overflow;
+      document.body.style.overflow = 'hidden';
+      return () => {
+        document.body.style.overflow = originalOverflow;
+      };
+    }
+  }, [lightboxOpen]);
 
   // Touch Swipe Handlers for mobile
   const handleTouchStart = (e) => {
@@ -175,49 +187,87 @@ export default function GalleryCarousel({
       )}
 
       {/* Lightbox Fullscreen Modal */}
-      {lightboxOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/95 p-4 backdrop-blur-lg animate-fadeIn">
-          <button
+      {lightboxOpen &&
+        createPortal(
+          <div
+            className="fixed inset-0 z-[100] flex items-center justify-center bg-black/95 p-4 sm:p-6 backdrop-blur-xl animate-fadeIn select-none"
             onClick={() => setLightboxOpen(false)}
-            aria-label="Tutup Layar Penuh"
-            className="absolute top-5 right-5 z-20 p-2.5 rounded-full bg-white/10 hover:bg-white/25 text-white transition-colors"
+            role="dialog"
+            aria-modal="true"
+            aria-label="Tampilan Layar Penuh Galeri"
           >
-            <X className="w-6 h-6" />
-          </button>
+            {/* Tombol Tutup (X) Layar Penuh */}
+            <button
+              type="button"
+              onClick={(e) => {
+                e.stopPropagation();
+                setLightboxOpen(false);
+              }}
+              aria-label="Tutup Layar Penuh"
+              title="Tutup (ESC)"
+              className="absolute top-4 right-4 sm:top-6 sm:right-6 z-50 flex items-center gap-2 px-3.5 py-2 sm:px-4 sm:py-2.5 rounded-full bg-stone-900/80 hover:bg-forest-900 border border-white/30 text-white shadow-2xl backdrop-blur-md transition-all duration-200 hover:scale-105 active:scale-95 cursor-pointer group"
+            >
+              <X className="w-5 h-5 sm:w-6 sm:h-6 text-white group-hover:rotate-90 transition-transform duration-200" />
+              <span className="text-xs sm:text-sm font-semibold tracking-wide pr-1">Tutup</span>
+            </button>
 
-          {/* Lightbox Prev & Next */}
-          {total > 1 && (
-            <>
-              <button
-                onClick={handlePrev}
-                aria-label="Foto Sebelumnya"
-                className="absolute left-4 sm:left-8 top-1/2 -translate-y-1/2 z-20 w-12 h-12 rounded-full bg-white/10 hover:bg-white/20 text-white flex items-center justify-center backdrop-blur-md transition-all"
-              >
-                <ChevronLeft className="w-6 h-6" />
-              </button>
-              <button
-                onClick={handleNext}
-                aria-label="Foto Selanjutnya"
-                className="absolute right-4 sm:right-8 top-1/2 -translate-y-1/2 z-20 w-12 h-12 rounded-full bg-white/10 hover:bg-white/20 text-white flex items-center justify-center backdrop-blur-md transition-all"
-              >
-                <ChevronRight className="w-6 h-6" />
-              </button>
-            </>
-          )}
+            {/* Lightbox Prev & Next */}
+            {total > 1 && (
+              <>
+                <button
+                  type="button"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    handlePrev();
+                  }}
+                  aria-label="Foto Sebelumnya"
+                  className="absolute left-3 sm:left-6 top-1/2 -translate-y-1/2 z-40 w-11 h-11 sm:w-14 sm:h-14 rounded-full bg-stone-900/70 hover:bg-forest-900/90 border border-white/20 text-white flex items-center justify-center backdrop-blur-md transition-all duration-200 hover:scale-110 active:scale-95 shadow-xl cursor-pointer"
+                >
+                  <ChevronLeft className="w-6 h-6 sm:w-7 sm:h-7 -ml-0.5" />
+                </button>
+                <button
+                  type="button"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    handleNext();
+                  }}
+                  aria-label="Foto Selanjutnya"
+                  className="absolute right-3 sm:right-6 top-1/2 -translate-y-1/2 z-40 w-11 h-11 sm:w-14 sm:h-14 rounded-full bg-stone-900/70 hover:bg-forest-900/90 border border-white/20 text-white flex items-center justify-center backdrop-blur-md transition-all duration-200 hover:scale-110 active:scale-95 shadow-xl cursor-pointer"
+                >
+                  <ChevronRight className="w-6 h-6 sm:w-7 sm:h-7 -mr-0.5" />
+                </button>
+              </>
+            )}
 
-          <div className="max-w-5xl max-h-[85vh] w-full flex flex-col items-center justify-center">
-            <ImageWithFallback
-              key={`lightbox-${images[currentIndex]}`}
-              src={images[currentIndex]}
-              alt={`${title} - Layar Penuh ${currentIndex + 1}`}
-              className="max-h-[80vh] w-auto object-contain rounded-2xl shadow-2xl"
-            />
-            <p className="text-xs text-stone-400 mt-3 font-light">
-              Foto {currentIndex + 1} dari {total}
-            </p>
-          </div>
-        </div>
-      )}
+            {/* Main Content Area */}
+            <div
+              className="max-w-5xl max-h-[85vh] w-full flex flex-col items-center justify-center relative z-20 pointer-events-auto"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <div className="relative max-h-[78vh] flex items-center justify-center">
+                <ImageWithFallback
+                  key={`lightbox-${images[currentIndex]}`}
+                  src={images[currentIndex]}
+                  alt={`${title} - Layar Penuh ${currentIndex + 1}`}
+                  className="max-h-[78vh] max-w-full w-auto object-contain rounded-2xl shadow-2xl"
+                />
+              </div>
+
+              {/* Bottom Caption & Counter Indicator */}
+              <div className="mt-3.5 flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-4 text-center px-4">
+                <span className="px-3 py-1 rounded-full bg-white/10 backdrop-blur-md text-stone-200 text-xs font-medium border border-white/15">
+                  Foto {currentIndex + 1} dari {total}
+                </span>
+                {caption && (
+                  <p className="text-xs text-stone-300 font-light max-w-xl truncate sm:whitespace-normal">
+                    {caption}
+                  </p>
+                )}
+              </div>
+            </div>
+          </div>,
+          document.body
+        )}
 
     </div>
   );

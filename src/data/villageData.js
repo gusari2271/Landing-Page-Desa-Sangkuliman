@@ -47,9 +47,9 @@ export const siteConfig = {
   socials: {
     // TODO: ISI DATA bila akun sosial media resmi diperbarui
     instagram: "https://www.instagram.com/pokdarwisbmt/",
-    tiktok: "https://tiktok.com/@desawisatasangkuliman",
-    youtube: "https://youtube.com/@desawisatasangkuliman",
-    facebook: "https://facebook.com/desawisatasangkuliman",
+    tiktok: "https://www.tiktok.com/@pokdarwisbmt?is_from_webapp=1&sender_device=pc",
+    youtube: "https://youtu.be/lcbPPUjJZqs?si=Ib-SfSnmPS26azbX",
+    facebook: "",
   },
   manager: {
     pokdarwis: "Kelompok Sadar Wisata Bertata Menata Tertata (Pokdarwis BMT)",
