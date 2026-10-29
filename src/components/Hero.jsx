@@ -10,7 +10,7 @@ export default function Hero({ onOpenVideo }) {
       {/* Background Panorama Image with subtle overlay & elegant fallback */}
       <div className="absolute inset-0 z-0">
         <ImageWithFallback
-          src="/images/hero/Desa Sangkuliman 1 hero page.png"
+          src="/images/hero/cover.webp"
           alt="Panorama Alam dan Pemukiman Desa Wisata Sangkuliman"
           priority={true}
           className="w-full h-full object-cover object-center filter brightness-[0.85]"

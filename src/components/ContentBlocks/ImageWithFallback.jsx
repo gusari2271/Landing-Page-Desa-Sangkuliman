@@ -85,6 +85,7 @@ export default function ImageWithFallback({
             alt={alt}
             loading={priority ? "eager" : "lazy"}
             fetchPriority={priority ? "high" : "auto"}
+            decoding="async"
             onLoad={() => {
               setIsLoaded(true);
               setHasError(false);

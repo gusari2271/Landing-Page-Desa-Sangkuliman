@@ -5,10 +5,10 @@ import ImageWithFallback from './ImageWithFallback';
 
 export default function GalleryCarousel({
   images = [
-    "/images/pemukiman-1990/coverpemukiman.png",
-    "/images/pemukiman-1990/1.jpg",
-    "/images/pemukiman-1990/2.png",
-    "/images/pemukiman-1990/3.jpg",
+    "/images/pemukiman-1990/coverpemukiman.webp",
+    "/images/pemukiman-1990/1.webp",
+    "/images/pemukiman-1990/2.webp",
+    "/images/pemukiman-1990/3.webp",
   ],
   caption = "",
   title = "Galeri Foto Eksplorasi",

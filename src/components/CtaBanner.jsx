@@ -9,7 +9,7 @@ export default function CtaBanner() {
       {/* Sunset Background at Tanjung Rappeh with moody overlay */}
       <div className="absolute inset-0 z-0">
         <ImageWithFallback
-          src="/images/tanjung-rappeh/cover.jpg"
+          src="/images/tanjung-rappeh/cover.webp"
           alt="Sunset di Tanjung Rappeh Desa Wisata Sangkuliman"
           className="w-full h-full object-cover object-center filter brightness-75"
         />

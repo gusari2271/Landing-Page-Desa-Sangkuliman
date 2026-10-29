@@ -43,7 +43,7 @@ export default function LocalExperiences() {
             {/* Featured Portrait Photo Card */}
             <div className="relative rounded-3xl overflow-hidden shadow-card mt-6 h-80 sm:h-96 group">
               <ImageWithFallback
-                src="/images/tanjung-hallat/cover.jpg"
+                src="/images/tanjung-hallat/cover.webp"
                 alt="Kehangatan Masyarakat dan Nelayan Sangkuliman"
                 className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
               />

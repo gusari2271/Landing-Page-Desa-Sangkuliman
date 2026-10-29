@@ -6,10 +6,10 @@ import { Link } from 'react-router-dom';
 
 export default function AboutHistory() {
   const historyPhotos = [
-    "/images/pemukiman-1990/1.jpg",
-    "/images/pemukiman-1990/2.png",
-    "/images/pemukiman-1990/3.jpg",
-    "/images/pemukiman-1990/coverpemukiman.png"
+    "/images/pemukiman-1990/1.webp",
+    "/images/pemukiman-1990/2.webp",
+    "/images/pemukiman-1990/3.webp",
+    "/images/pemukiman-1990/coverpemukiman.webp"
   ];
 
   return (
@@ -116,7 +116,7 @@ export default function AboutHistory() {
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
             <div className="lg:col-span-6 rounded-3xl overflow-hidden shadow-card">
               <ImageWithFallback
-                src="/images/pemukiman-1990/coverpemukiman.png"
+                src="/images/pemukiman-1990/coverpemukiman.webp"
                 alt="Foto udara pemukiman terpadu Desa Sangkuliman yang rapi dan seragam"
                 priority={true}
                 className="w-full h-80 sm:h-96 object-cover"
