@@ -21,10 +21,10 @@ export default function VideoModal({ isOpen, onClose }) {
         {/* Video Player Container */}
         <div className="aspect-video w-full">
           <iframe
-            src="https://www.youtube.com/embed/LeyZZOXV2cs?si=Sw7uw3vNpE273VCx?autoplay=1"
+            src="https://www.youtube-nocookie.com/embed/LeyZZOXV2cs?autoplay=1&rel=0"
             title="Video Profil Desa Wisata Sangkuliman"
             className="w-full h-full border-0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
             allowFullScreen
           ></iframe>
         </div>
