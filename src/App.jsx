@@ -12,7 +12,6 @@ import CentralLinkHub from './components/CentralLinkHub';
 import PartnersSection from './components/PartnersSection';
 import CtaBanner from './components/CtaBanner';
 import Footer from './components/Footer';
-import ChatbotWidget from './components/ChatbotWidget';
 import VideoModal from './components/VideoModal';
 import SearchModal from './components/SearchModal';
 import BrochureModal from './components/BrochureModal';
@@ -100,9 +99,6 @@ export default function App() {
             element={<CulinaryPage />}
           />
         </Routes>
-
-        {/* Global AI Chatbot Widget (Fixed Bottom-Right) */}
-        <ChatbotWidget />
 
         {/* Interactive Modals */}
         <VideoModal
